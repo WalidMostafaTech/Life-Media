@@ -30,7 +30,9 @@ const SuccessStory = () => {
   return (
     <section className="container sectionPadding">
       <SectionTitle title={t("success_story.title")} />
+
       <Swiper
+        key={direction}
         dir={direction}
         spaceBetween={20}
         slidesPerView={1}

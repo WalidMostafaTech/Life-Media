@@ -23,6 +23,7 @@ const Hero = () => {
 
   return (
     <Swiper
+      key={direction}
       dir={direction}
       slidesPerView={1}
       autoplay={{ delay: 1000 }}

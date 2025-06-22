@@ -30,6 +30,7 @@ const Partenars = () => {
       </div>
 
       <Swiper
+        key={direction}
         dir={direction}
         spaceBetween={20}
         slidesPerView={2}

@@ -27,7 +27,9 @@ const Testimonials = () => {
   return (
     <section className="sectionPadding">
       <SectionTitle title={t("testimonials.title")} />
+
       <Swiper
+        key={direction}
         dir={direction}
         spaceBetween={20}
         slidesPerView={1}
