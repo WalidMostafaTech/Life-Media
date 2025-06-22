@@ -1,0 +1,21 @@
+.successStorySwiper {
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--dark-red);
+
+    &:after {
+      font-size: 30px;
+      color: white;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none;
+    }
+  }
+}

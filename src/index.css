@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --dark-red: #5a0211;
+  --light-red: #e13d3d;
+  --dark-gray: #1f1f1f;
+  --light-gray: #1a1a1a;
+}
+
+@theme {
+  --color-dark-red: var(--dark-red);
+  --color-light-red: var(--light-red);
+  --color-dark-gray: var(--dark-gray);
+  --color-light-gray: var(--light-gray);
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--dark-gray);
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* fix hover in mobile */
+@custom-variant hover (&:hover);
+
+@layer {
+  .myContainer {
+    @apply container px-4 mx-auto;
+  }
+
+  .sectionPadding {
+    @apply py-6 lg:py-10;
+  }
+
+  .mainBtn {
+    @apply bg-dark-red font-bold text-lg py-2 px-4 rounded-full cursor-pointer
+    flex items-center justify-center gap-2 shadow-[0px_0px_70px_0px] shadow-transparent ring-black/20
+    transition-all duration-300;
+
+    svg {
+      @apply text-3xl;
+    }
+
+    &.light {
+      @apply bg-white text-dark-red;
+    }
+
+    &.transparent {
+      @apply bg-transparent text-white ring-white ring-2;
+    }
+
+    &:hover {
+      @apply shadow-light-red bg-red-900 ring-3;
+
+      &.light {
+        @apply text-white;
+      }
+
+      &.transparent {
+        @apply bg-red-900 text-white ring-red-900 shadow-transparent;
+      }
+    }
+  }
+
+  .navLink {
+    @apply text-lg duration-300 relative;
+
+    &::after {
+      @apply content-[''] absolute h-2 w-2 rounded-full bg-light-red -bottom-2 left-1/2 -translate-x-1/2 opacity-0 duration-300;
+    }
+
+    &.active,
+    &:hover {
+      @apply text-light-red;
+
+      &::after {
+        @apply opacity-100;
+      }
+    }
+  }
+}
