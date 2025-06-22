@@ -27,6 +27,7 @@ const Services = () => {
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="group relative rounded-4xl overflow-hidden sm:col-span-2">
             <img
+              loading="lazy"
               src={solutions[0]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
@@ -43,6 +44,7 @@ const Services = () => {
           </div>
           <div className="group relative rounded-4xl overflow-hidden">
             <img
+              loading="lazy"
               src={solutions[1]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
@@ -59,6 +61,7 @@ const Services = () => {
           </div>
           <div className="group relative rounded-4xl overflow-hidden">
             <img
+              loading="lazy"
               src={solutions[2]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
@@ -78,6 +81,7 @@ const Services = () => {
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="group relative rounded-4xl overflow-hidden">
             <img
+              loading="lazy"
               src={solutions[3]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
@@ -94,6 +98,7 @@ const Services = () => {
           </div>
           <div className="group relative rounded-4xl overflow-hidden">
             <img
+              loading="lazy"
               src={solutions[4]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
@@ -110,6 +115,7 @@ const Services = () => {
           </div>
           <div className="group relative rounded-4xl overflow-hidden sm:col-span-2">
             <img
+              loading="lazy"
               src={solutions[5]?.image_url}
               className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
             />

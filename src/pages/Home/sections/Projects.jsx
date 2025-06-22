@@ -30,6 +30,7 @@ const Projects = () => {
             className="group relative h-[300px] lg:h-[540px] border-6 border-light-gray rounded-4xl overflow-hidden"
           >
             <img
+              loading="lazy"
               src={project.image_url}
               alt={project.title}
               className="w-full h-full object-cover group-hover:scale-120 transition-transform duration-500"

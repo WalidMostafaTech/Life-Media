@@ -48,6 +48,7 @@ const SuccessStory = () => {
             <div className="flex flex-col lg:flex-row bg-light-gray rounded-xl overflow-hidden max-w-4xl mx-auto">
               <div className="h-auto overflow-hidden rounded-lg">
                 <img
+                  loading="lazy"
                   src={item.image_url}
                   alt={item.title}
                   className="w-full h-full object-cover"

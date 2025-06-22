@@ -30,7 +30,6 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
   const linksList = ["Home", "Projects", "Services", "About", "Careers"];
 
   return (
@@ -45,7 +44,7 @@ const Header = () => {
           }`}
       >
         <div className="flex items-center justify-between gap-2 w-full lg:w-auto">
-          <img src={logoImg} alt="Logo" />
+          <img loading="lazy" src={logoImg} alt="Logo" />
           <span className="text-3xl cursor-pointer lg:hidden">
             {activeNav ? (
               <IoClose onClick={() => setActiveNav(false)} />
@@ -72,7 +71,10 @@ const Header = () => {
           <button className="mainBtn">
             Join Waitlist <GoArrowUpRight />
           </button>
-          <button onClick={() => dispatch(toggleLanguage())} className="mainBtn transparent">
+          <button
+            onClick={() => dispatch(toggleLanguage())}
+            className="mainBtn transparent"
+          >
             {lang === "en" ? "العربية" : "English"}
           </button>
         </div>

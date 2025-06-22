@@ -49,7 +49,12 @@ const Partenars = () => {
       >
         {brands?.map((item, index) => (
           <SwiperSlide key={index}>
-            <img src={item.logo_url} alt={item.name} className="mx-auto" />
+            <img
+              loading="lazy"
+              src={item.logo_url}
+              alt={item.name}
+              className="mx-auto"
+            />
           </SwiperSlide>
         ))}
       </Swiper>

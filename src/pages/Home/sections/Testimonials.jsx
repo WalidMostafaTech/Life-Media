@@ -57,6 +57,7 @@ const Testimonials = () => {
             >
               <div className="h-14">
                 <img
+                  loading="lazy"
                   src={item.logo_url}
                   alt="Brand"
                   className="w-full h-full object-cover"
@@ -68,6 +69,7 @@ const Testimonials = () => {
               <div className="flex items-center gap-2">
                 <div className="w-12 h-12 overflow-hidden rounded-full">
                   <img
+                    loading="lazy"
                     src={item.image_url}
                     className="w-full h-full object-cover"
                     alt={item.name}

@@ -30,7 +30,7 @@ const Footer = () => {
       <div className="container bg-dark-red grid lg:grid-cols-3 gap-10">
         {/* Company Info */}
         <div className="flex flex-col items-center gap-4 text-center">
-          <img src={logoImg} alt="Logo" />
+          <img loading="lazy" src={logoImg} alt="Logo" />
           <p>{t("footer.title")}</p>
         </div>
 
