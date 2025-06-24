@@ -1,12 +1,6 @@
 import logoImg from "../../../assets/images/logo-white.png";
-import {
-  FaInstagram,
-  FaLinkedinIn,
-  FaBehance,
-  FaWhatsapp,
-  FaFacebook,
-} from "react-icons/fa";
-import Loading from "../Loading/Loading";
+import { FaInstagram, FaBehance, FaWhatsapp, FaFacebook } from "react-icons/fa";
+import LoadingSection from "../Loading/LoadingSection";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSetting } from "../../../store/setting/settingAction";
@@ -22,19 +16,17 @@ const Footer = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <Loading />;
+    return <LoadingSection />;
   }
 
   return (
     <footer className="bg-dark-red sectionPadding">
       <div className="container bg-dark-red grid lg:grid-cols-3 gap-10">
-        {/* Company Info */}
         <div className="flex flex-col items-center gap-4 text-center">
           <img loading="lazy" src={logoImg} alt="Logo" />
           <p>{t("footer.title")}</p>
         </div>
 
-        {/* Links */}
         <div className="flex flex-col items-center gap-4 text-center">
           <h3 className="font-bold text-2xl">{t("footer.explore")}</h3>
           <ul className="space-y-1">
@@ -69,24 +61,29 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Contact */}
         <div className="flex flex-col items-center gap-4 text-center">
           <h3 className="font-bold text-2xl">{t("footer.lets_connect")}</h3>
-          <p>
-            {t("footer.email")}:{" "}
-            <a
-              href={`mailto:${setting?.email}`}
-              className="hover:text-gray-400 transition"
-            >
-              {setting?.email}
-            </a>
-          </p>
-          <p>
-            {t("footer.phone")}: {setting?.phone}
-          </p>
-          <p>
-            {t("footer.location")}: {setting?.address}
-          </p>
+          {setting?.email && (
+            <p>
+              {t("footer.email")}:{" "}
+              <a
+                href={`mailto:${setting?.email}`}
+                className="hover:text-gray-400 transition"
+              >
+                {setting?.email}
+              </a>
+            </p>
+          )}
+          {setting?.phone && (
+            <p>
+              {t("footer.phone")}: {setting?.phone}
+            </p>
+          )}
+          {setting?.address && (
+            <p>
+              {t("footer.location")}: {setting?.address}
+            </p>
+          )}
 
           <button className="mainBtn light">{t("footer.button")}</button>
         </div>
@@ -97,34 +94,42 @@ const Footer = () => {
         <p className="text-center">{t("footer.rights")}</p>
 
         <div className="flex justify-center flex-wrap gap-4">
-          <a
-            href={setting?.whatsapp}
-            target="_blank"
-            className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
-          >
-            <FaWhatsapp />
-          </a>
-          <a
-            href={setting?.instagram}
-            target="_blank"
-            className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
-          >
-            <FaInstagram />
-          </a>
-          <a
-            href={setting?.facebook}
-            target="_blank"
-            className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
-          >
-            <FaFacebook />
-          </a>
-          <a
-            href={setting?.behance}
-            target="_blank"
-            className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
-          >
-            <FaBehance />
-          </a>
+          {setting?.whatsapp && (
+            <a
+              href={setting?.whatsapp}
+              target="_blank"
+              className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
+            >
+              <FaWhatsapp />
+            </a>
+          )}
+          {setting?.instagram && (
+            <a
+              href={setting?.instagram}
+              target="_blank"
+              className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
+            >
+              <FaInstagram />
+            </a>
+          )}
+          {setting?.facebook && (
+            <a
+              href={setting?.facebook}
+              target="_blank"
+              className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
+            >
+              <FaFacebook />
+            </a>
+          )}
+          {setting?.behance && (
+            <a
+              href={setting?.behance}
+              target="_blank"
+              className="w-10 h-10 rounded-full border flex items-center justify-center text-2xl hover:text-gray-400 transition"
+            >
+              <FaBehance />
+            </a>
+          )}
         </div>
 
         <div className="text-center">

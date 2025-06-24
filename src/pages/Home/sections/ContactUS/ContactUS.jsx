@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { contactUsAct } from "../../../../store/contact-us/contactUsAction";
+import { GoArrowUpRight } from "react-icons/go";
 
 const ContactUS = () => {
+  const { loading } = useSelector((state) => state.contactUs);
+  const dispatch = useDispatch();
+
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
     fullName: "",
@@ -33,8 +39,19 @@ const ContactUS = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Form Data:", formData);
-      alert(t("contact.success"));
+      const form = {
+        full_name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.service,
+      };
+      dispatch(contactUsAct(form));
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        service: "",
+      });
     }
   };
 
@@ -54,7 +71,7 @@ const ContactUS = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="bg-light-gray p-8 rounded-lg space-y-4"
+          className={`bg-dark-gray p-8 rounded-lg space-y-4`}
         >
           <div>
             <label className="block mb-1">{t("contact.full_name")}</label>
@@ -64,7 +81,7 @@ const ContactUS = () => {
               value={formData.fullName}
               onChange={handleChange}
               placeholder={t("contact.full_name_placeholder")}
-              className={`w-full p-4 rounded-lg text-lg bg-dark-gray border-2 ${
+              className={`w-full p-4 rounded-lg text-lg bg-light-gray border-2 ${
                 errors.fullName ? "border-dark-red" : "border-transparent"
               } focus:outline-none text-white`}
             />
@@ -83,7 +100,7 @@ const ContactUS = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder={t("contact.email_placeholder")}
-              className={`w-full p-4 rounded-lg text-lg bg-dark-gray border-2 ${
+              className={`w-full p-4 rounded-lg text-lg bg-light-gray border-2 ${
                 errors.email ? "border-dark-red" : "border-transparent"
               } focus:outline-none text-white`}
             />
@@ -100,7 +117,7 @@ const ContactUS = () => {
               value={formData.phone}
               onChange={handleChange}
               placeholder={t("contact.phone_placeholder")}
-              className={`w-full p-4 rounded-lg text-lg bg-dark-gray border-2 ${
+              className={`w-full p-4 rounded-lg text-lg bg-light-gray border-2 ${
                 errors.phone ? "border-dark-red" : "border-transparent"
               } focus:outline-none text-white`}
             />
@@ -115,7 +132,7 @@ const ContactUS = () => {
               name="service"
               value={formData.service}
               onChange={handleChange}
-              className={`w-full p-4 rounded-lg text-lg bg-dark-gray border-2 cursor-pointer ${
+              className={`w-full p-4 rounded-lg text-lg bg-light-gray border-2 cursor-pointer ${
                 errors.service ? "border-dark-red" : "border-transparent"
               } focus:outline-none text-white`}
             >
@@ -131,8 +148,18 @@ const ContactUS = () => {
             )}
           </div>
 
-          <button type="submit" className="mainBtn w-full relative">
-            {t("contact.submit_btn")}
+          <button
+            disabled={loading}
+            type="submit"
+            className={`mainBtn w-full relative flex items-center justify-center`}
+          >
+            {loading ? (
+              <span className="loader border-2 border-white border-t-transparent rounded-full w-6 h-6 animate-spin"></span>
+            ) : (
+              <>
+                {t("contact.submit_btn")} <GoArrowUpRight />
+              </>
+            )}
           </button>
         </form>
       </div>

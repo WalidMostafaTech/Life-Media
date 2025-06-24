@@ -5,7 +5,8 @@ import { getBanners } from "../../../../store/banners/bannersAction";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import Loading from "../../../../components/layout/Loading/Loading";
+import EmptySection from "../../../../components/layout/EmptySection/EmptySection";
+import LoadingSection from "../../../../components/layout/Loading/LoadingSection";
 
 const Hero = () => {
   const { banners, loading } = useSelector((state) => state.banners);
@@ -18,49 +19,57 @@ const Hero = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <Loading />;
+    return <LoadingSection />;
   }
 
   return (
-    <Swiper
-      key={direction}
-      dir={direction}
-      slidesPerView={1}
-      autoplay={{ delay: 1000 }}
-      speed={3000}
-      loop={true}
-      modules={[Autoplay]}
-    >
-      {banners?.map((banner) => (
-        <SwiperSlide key={banner.id}>
-          <article
-            id="Home"
-            style={{ backgroundImage: `url(${banner?.desktop_image_url})` }}
-            className="h-screen bg-cover bg-center bg-no-repeat"
-          >
-            <div className="container mx-auto px-4 h-full flex flex-col justify-end">
-              <div className="max-w-xl mb-20 flex flex-col items-center lg:items-start text-center mx-auto lg:mx-0 lg:text-left gap-4 text-white">
-                <h1 className="text-3xl lg:text-5xl font-bold">
-                  {banner?.title}
-                </h1>
-                <p className="text-lg">{banner?.paragraph}</p>
-                <div className="flex flex-wrap gap-2 lg:gap-4">
-                  {banner?.buttons.map((button, index) => (
-                    <Link
-                      key={index}
-                      to={button.url}
-                      className={`mainBtn ${button.outline && "transparent"}`}
-                    >
-                      {button.text}
-                    </Link>
-                  ))}
+    <>
+      {banners.length > 0 ? (
+        <Swiper
+          key={direction}
+          dir={direction}
+          slidesPerView={1}
+          autoplay={{ delay: 1000 }}
+          speed={3000}
+          loop={true}
+          modules={[Autoplay]}
+        >
+          {banners?.map((banner) => (
+            <SwiperSlide key={banner.id}>
+              <article
+                id="Home"
+                style={{ backgroundImage: `url(${banner?.desktop_image_url})` }}
+                className="h-screen bg-cover bg-center bg-no-repeat"
+              >
+                <div className="container mx-auto px-4 h-full flex flex-col justify-end">
+                  <div className="max-w-xl mb-20 flex flex-col items-center lg:items-start text-center lg:text-start mx-auto lg:mx-0 gap-4 text-white">
+                    <h1 className="text-3xl lg:text-5xl font-bold">
+                      {banner?.title}
+                    </h1>
+                    <p className="text-lg">{banner?.paragraph}</p>
+                    <div className="flex flex-col lg:flex-row flex-wrap gap-4">
+                      {banner?.buttons.map((button, index) => (
+                        <Link
+                          key={index}
+                          to={button.url}
+                          className={`mainBtn ${
+                            button.outline && "transparent"
+                          }`}
+                        >
+                          {button.text}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </article>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+              </article>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      ) : (
+        <EmptySection />
+      )}
+    </>
   );
 };
 

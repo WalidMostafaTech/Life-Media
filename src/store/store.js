@@ -8,6 +8,8 @@ import questionsSlice from "./questions/questionsSlice";
 import successStoriesSlice from "./success_stories/success_storiesSlice";
 import solutionsSlice from "./solutions/solutionsSlice";
 import settingSlice from "./setting/settingSlice";
+import contactUsSlice from "./contact-us/contactUsSlice";
+
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +22,6 @@ export const store = configureStore({
     successStories: successStoriesSlice,
     solutions: solutionsSlice,
     setting: settingSlice,
+    contactUs:contactUsSlice
   },
 });

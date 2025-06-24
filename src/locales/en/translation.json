@@ -4,6 +4,7 @@
   "Services": "Services",
   "About": "About",
   "Careers": "Careers",
+  "Loading": "Loading",
   "company_state_title": "Proven Results, Trusted by Many",
   "cta": {
     "ready": "Ready to Take Your Brand to the Next Level?",
@@ -57,7 +58,7 @@
       "design": "UI/UX Design",
       "seo": "SEO & Marketing"
     },
-    "submit_btn": "Book My Free Call →",
+    "submit_btn": "Book My Free Call",
     "success": "Free call booked successfully!",
     "errors": {
       "full_name": "Full Name is required",
