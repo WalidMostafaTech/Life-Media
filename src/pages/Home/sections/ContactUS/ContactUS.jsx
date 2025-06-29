@@ -3,12 +3,14 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { contactUsAct } from "../../../../store/contact-us/contactUsAction";
 import { GoArrowUpRight } from "react-icons/go";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactUS = () => {
-  const { loading } = useSelector((state) => state.contactUs);
+  const { loading, error } = useSelector((state) => state.contactUs);
+  const { setting } = useSelector((state) => state.setting);
   const dispatch = useDispatch();
-
   const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -17,6 +19,10 @@ const ContactUS = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [captchaValue, setCaptchaValue] = useState(null);
+  const [captchaError, setCaptchaError] = useState("");
+  const [successMessage, setSuccessMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -36,22 +42,47 @@ const ContactUS = () => {
     setErrors({ ...errors, [e.target.name]: "" });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
+    const isValid = validate();
+
+    if (setting?.recaptcha_enabled && !captchaValue) {
+      setCaptchaError(t("contact.errors.recaptcha"));
+      return;
+    } else {
+      setCaptchaError("");
+    }
+
+    if (isValid && (captchaValue || !setting?.recaptcha_enabled)) {
       const form = {
         full_name: formData.fullName,
         email: formData.email,
         phone: formData.phone,
         subject: formData.service,
+        ...(setting?.recaptcha_enabled && { recaptcha: captchaValue }),
       };
-      dispatch(contactUsAct(form));
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        service: "",
-      });
+
+      try {
+        await dispatch(contactUsAct(form)).unwrap();
+        setSuccessMessage(true);
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          service: "",
+        });
+        setCaptchaValue(null);
+
+        setTimeout(() => {
+          setSuccessMessage(false);
+        }, 5000);
+      } catch (err) {
+        console.error("Submission error:", error || err);
+        setErrorMessage(true);
+        setTimeout(() => {
+          setErrorMessage(false);
+        }, 5000);
+      }
     }
   };
 
@@ -71,7 +102,7 @@ const ContactUS = () => {
 
         <form
           onSubmit={handleSubmit}
-          className={`bg-dark-gray p-8 rounded-lg space-y-4`}
+          className="bg-dark-gray p-8 rounded-lg space-y-4"
         >
           <div>
             <label className="block mb-1">{t("contact.full_name")}</label>
@@ -137,9 +168,13 @@ const ContactUS = () => {
               } focus:outline-none text-white`}
             >
               <option value="">{t("contact.choose_service")}</option>
-              <option value="web">{t("contact.services.web")}</option>
-              <option value="design">{t("contact.services.design")}</option>
-              <option value="seo">{t("contact.services.seo")}</option>
+              {Object.entries(setting?.subject_options || {}).map(
+                ([key, value]) => (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                )
+              )}
             </select>
             {errors.service && (
               <p className="text-dark-red font-semibold mt-1">
@@ -148,10 +183,50 @@ const ContactUS = () => {
             )}
           </div>
 
+          {setting?.recaptcha_enabled && (
+            <div className="flex flex-col items-center">
+              <ReCAPTCHA
+                sitekey={setting?.recaptcha_site_key}
+                onChange={(value) => {
+                  setCaptchaValue(value);
+                  setCaptchaError("");
+                }}
+                theme="dark"
+              />
+              {captchaError && (
+                <p className="text-dark-red font-semibold mt-1">
+                  {captchaError}
+                </p>
+              )}
+            </div>
+          )}
+
+          <div
+            className={`w-full text-center text-xl bg-green-600 text-white font-semibold rounded-full overflow-hidden
+            duration-500 ease-in-out ${
+              successMessage
+                ? "max-h-[100px] py-2 px-4 opacity-100"
+                : "max-h-0 opacity-0 m-0"
+            }`}
+          >
+            {t("contact.success_message")}
+          </div>
+
+          <div
+            className={`w-full text-center text-xl bg-light-red text-white font-semibold rounded-full overflow-hidden
+            duration-500 ease-in-out ${
+              errorMessage
+                ? "max-h-[100px] py-2 px-4 opacity-100"
+                : "max-h-0 opacity-0 m-0"
+            }`}
+          >
+            {t("contact.error_message")}
+          </div>
+
           <button
             disabled={loading}
             type="submit"
-            className={`mainBtn w-full relative flex items-center justify-center`}
+            className="mainBtn w-full relative flex items-center justify-center"
           >
             {loading ? (
               <span className="loader border-2 border-white border-t-transparent rounded-full w-6 h-6 animate-spin"></span>

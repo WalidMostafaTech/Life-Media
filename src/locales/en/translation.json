@@ -64,8 +64,11 @@
       "full_name": "Full Name is required",
       "email": "Invalid email address",
       "phone": "Invalid phone number",
-      "service": "Please choose a service"
-    }
+      "service": "Please choose a service",
+      "recaptcha": "Please verify the reCAPTCHA"
+    },
+    "success_message": "Form submitted successfully",
+    "error_message": "Unexpected error, please try again later."
   },
   "footer": {
     "title": "A creative agency helping brands grow through design, strategy, and impact.",
