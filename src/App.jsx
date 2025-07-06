@@ -5,6 +5,7 @@ import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import { useSelector } from "react-redux";
 import "./i18n.js";
+import ScrollToTopButton from "./components/common/ScrollToTopButton.jsx";
 
 function App() {
   const { pathname } = useLocation();
@@ -23,6 +24,8 @@ function App() {
       <Header />
       <Outlet />
       <Footer />
+
+      <ScrollToTopButton />
     </main>
   );
 }

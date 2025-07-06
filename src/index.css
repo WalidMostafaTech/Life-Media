@@ -88,4 +88,16 @@ html {
       }
     }
   }
+
+  .footerLinksTitle {
+    @apply font-bold text-3xl relative;
+
+    &::after {
+      @apply content-[''] absolute h-1 w-6 bg-light-red -top-2 -start-3;
+    }
+
+    &::before {
+      @apply content-[''] absolute h-6 w-1 bg-light-red -top-2 -start-3;
+    }
+  }
 }
