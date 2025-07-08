@@ -31,7 +31,7 @@ const ScrollToTopButton = () => {
     <>
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-0 start-4 z-50 p-3 rounded-full bg-dark-gray text-white border border-dark-red 
+        className={`fixed bottom-0 end-4 z-50 p-2 lg:p-4 rounded-full bg-dark-gray text-white border border-dark-red 
         cursor-pointer transition-all duration-300 ${
           isVisible
             ? "opacity-100 bottom-4 lg:bottom-24"
@@ -43,7 +43,7 @@ const ScrollToTopButton = () => {
       </button>
 
       <div
-        className={`fixed bottom-0 end-4 z-50 hidden lg:flex flex-col gap-4 transition-all duration-300 ${
+        className={`fixed bottom-0 start-4 z-50 hidden lg:flex flex-col gap-4 transition-all duration-300 ${
           isVisible
             ? "opacity-100 bottom-4 lg:bottom-24"
             : "opacity-0 pointer-events-none"

@@ -5,7 +5,7 @@ const FooterLinks = ({ title, links }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2 lg:gap-4">
       <h3 className="footerLinksTitle">{t(title)}</h3>
 
       <ul className="space-y-2 text-lg text-start">

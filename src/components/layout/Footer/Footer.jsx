@@ -29,15 +29,20 @@ const Footer = () => {
     >
       <div className="bg-light-red/10 sectionPadding">
         <div className="container">
-          <img loading="lazy" src={logoImg} alt="Logo" className="mx-auto" />
+          <img
+            loading="lazy"
+            src={logoImg}
+            alt="Logo"
+            className="mx-auto w-42 lg:w-60"
+          />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-10 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8 py-4 lg:py-8">
             {FooterList.map((item, index) => (
               <FooterLinks key={index} title={item.title} links={item.links} />
             ))}
           </div>
 
-          <div className="text-center pt-8 border-t border-gray-500">
+          <div className="text-center pt-4 lg:pt-8 border-t border-gray-500">
             <p className="text-center">
               {t("footer.rights")}{" "}
               <Link to="#!" className="font-bold text-light-red">

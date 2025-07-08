@@ -32,6 +32,13 @@
   "testimonials": {
     "title": "آراء العملاء"
   },
+  "video_section": {
+    "title": "مرحبًا بك في موقعنا",
+    "subtitle": "نحن نقدم أفضل الخدمات لك بجودة عالية وتجربة مميزة"
+  },
+  "videos_slider": {
+    "title": "أحدث الفيديوهات"
+  },
   "success_story": {
     "title": "قصة نجاح"
   },

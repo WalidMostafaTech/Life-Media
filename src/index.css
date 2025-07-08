@@ -90,14 +90,14 @@ html {
   }
 
   .footerLinksTitle {
-    @apply font-bold text-3xl relative;
+    @apply font-bold text-xl lg:text-3xl relative;
 
     &::after {
-      @apply content-[''] absolute h-1 w-6 bg-light-red -top-2 -start-3;
+      @apply hidden lg:block content-[''] absolute h-1 w-6 bg-light-red -top-2 -start-3;
     }
 
     &::before {
-      @apply content-[''] absolute h-6 w-1 bg-light-red -top-2 -start-3;
+      @apply content-[''] absolute h-full lg:h-6 w-0.5 lg:w-1 bg-light-red -start-2 lg:-top-2 lg:-start-3;
     }
   }
 }

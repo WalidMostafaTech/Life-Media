@@ -32,6 +32,13 @@
   "testimonials": {
     "title": "Client Testimonials"
   },
+  "video_section": {
+    "title": "Welcome to Our Website",
+    "subtitle": "We offer you the best services with high quality and an exceptional experience"
+  },
+  "videos_slider": {
+    "title": "Latest Videos"
+  },
   "success_story": {
     "title": "Success Story"
   },
