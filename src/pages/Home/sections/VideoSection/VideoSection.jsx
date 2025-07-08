@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 const VideoSection = () => {
   const { t } = useTranslation();
   return (
-    <div className="relative w-screen h-[90vh] overflow-hidden">
+    <article className="relative w-full h-[90vh] overflow-hidden">
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
         src="https://framerusercontent.com/assets/HmIrfBkCmIleNyD8NC4PlQ6Bzg.mp4"
@@ -21,7 +21,7 @@ const VideoSection = () => {
           {t("video_section.subtitle")}
         </p>
       </div>
-    </div>
+    </article>
   );
 };
 
