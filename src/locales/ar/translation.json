@@ -3,6 +3,7 @@
   "Projects": "المشاريع",
   "Services": "الخدمات",
   "About": "من نحن",
+  "join_us": "انضم إلينا",
   "Careers": "الوظائف",
   "Loading": "جار التحميل",
   "company_state_title": "نتائج مثبتة، محل ثقة الكثيرين",
@@ -31,10 +32,6 @@
   },
   "testimonials": {
     "title": "آراء العملاء"
-  },
-  "video_section": {
-    "title": "مرحبًا بك في موقعنا",
-    "subtitle": "نحن نقدم أفضل الخدمات لك بجودة عالية وتجربة مميزة"
   },
   "videos_slider": {
     "title": "أحدث الفيديوهات"

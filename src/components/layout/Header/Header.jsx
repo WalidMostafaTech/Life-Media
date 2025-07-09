@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { toggleLanguage } from "../../../store/languageSlice";
 import Loading from "../Loading/LoadingPage";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [activeNav, setActiveNav] = useState(false);
@@ -77,9 +78,9 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center justify-center flex-wrap gap-2">
-            <button className="mainBtn">
-              Join Waitlist <GoArrowUpRight />
-            </button>
+            <a href="#Contact" className="mainBtn">
+              {t("join_us")} <GoArrowUpRight />
+            </a>
             <button onClick={handleChangeLang} className="mainBtn transparent">
               {lang === "en" ? "العربية" : "English"}
             </button>

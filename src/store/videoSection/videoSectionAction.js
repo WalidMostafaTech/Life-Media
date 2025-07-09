@@ -8,7 +8,7 @@ export const getVideoSection = createAsyncThunk(
       const state = getState();
       const language = state.language.lang || "en";
 
-      const { data } = await axios.get("/testimonials", {
+      const { data } = await axios.get("/videos?is_pin=1", {
         headers: {
           lang: language,
         },

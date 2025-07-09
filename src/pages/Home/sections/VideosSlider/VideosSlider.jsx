@@ -10,19 +10,6 @@ import EmptySection from "../../../../components/layout/EmptySection/EmptySectio
 const VideosSlider = () => {
   const { videosSlider, loading } = useSelector((state) => state.videosSlider);
 
-  const videoUrls = [
-    "https://framerusercontent.com/assets/HmIrfBkCmIleNyD8NC4PlQ6Bzg.mp4",
-    "https://framerusercontent.com/assets/HmIrfBkCmIleNyD8NC4PlQ6Bzg.mp4",
-    "https://framerusercontent.com/assets/HmIrfBkCmIleNyD8NC4PlQ6Bzg.mp4",
-    "https://framerusercontent.com/assets/HmIrfBkCmIleNyD8NC4PlQ6Bzg.mp4",
-    "https://framerusercontent.com/assets/HmIrfBkCmIleNyD8NC4PlQ6Bzg.mp4",
-    "https://framerusercontent.com/assets/HmIrfBkCmIleNyD8NC4PlQ6Bzg.mp4",
-    "https://framerusercontent.com/assets/HmIrfBkCmIleNyD8NC4PlQ6Bzg.mp4",
-    "https://framerusercontent.com/assets/HmIrfBkCmIleNyD8NC4PlQ6Bzg.mp4",
-    "https://framerusercontent.com/assets/HmIrfBkCmIleNyD8NC4PlQ6Bzg.mp4",
-    "https://framerusercontent.com/assets/HmIrfBkCmIleNyD8NC4PlQ6Bzg.mp4",
-  ];
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -68,10 +55,10 @@ const VideosSlider = () => {
               gradient={false}
               style={{ direction: `ltr` }}
             >
-              {[...videoUrls, ...videoUrls].map((src, index) => (
+              {videosSlider?.map((video, index) => (
                 <div key={index} className="mx-1 w-54 h-40">
                   <video
-                    src={src}
+                    src={video.full_path}
                     autoPlay
                     loop
                     muted

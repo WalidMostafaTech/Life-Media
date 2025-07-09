@@ -87,7 +87,7 @@ const ContactUS = () => {
   };
 
   return (
-    <section id="About" className="container sectionPadding">
+    <section id="Contact" className="container sectionPadding">
       <div className="grid lg:grid-cols-2 gap-10">
         <div>
           <h2 className="text-5xl font-bold mb-4">
