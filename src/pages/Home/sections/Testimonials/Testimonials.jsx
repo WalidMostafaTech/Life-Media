@@ -1,7 +1,5 @@
 import SectionTitle from "../../../../components/common/SectionTitle";
 import noiseImg from "../../../../assets/images/noise.png";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";

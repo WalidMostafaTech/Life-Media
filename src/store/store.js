@@ -9,7 +9,8 @@ import successStoriesSlice from "./success_stories/success_storiesSlice";
 import solutionsSlice from "./solutions/solutionsSlice";
 import settingSlice from "./setting/settingSlice";
 import contactUsSlice from "./contact-us/contactUsSlice";
-
+import videoSectionSlice from "./videoSection/videoSectionSlice";
+import videosSliderSlice from "./videosSlider/videosSliderSlice";
 
 export const store = configureStore({
   reducer: {
@@ -22,6 +23,8 @@ export const store = configureStore({
     successStories: successStoriesSlice,
     solutions: solutionsSlice,
     setting: settingSlice,
-    contactUs:contactUsSlice
+    contactUs: contactUsSlice,
+    videoSection: videoSectionSlice,
+    videosSlider: videosSliderSlice,
   },
 });

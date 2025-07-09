@@ -31,12 +31,12 @@ const CompanyState = () => {
               <div
                 key={index}
                 className="group flex flex-col min-w-1/5 gap-4 justify-end h-[400px] bg-black/30 p-6 rounded-lg shadow-lg 
-              hover:bg-dark-red hover:flex-grow transition-all duration-600"
+              hover:bg-dark-red hover:flex-grow transition-all duration-500 ease-in-out"
               >
-                <span className="text-4xl group-hover:text-7xl duration-600">
+                <span className="text-4xl group-hover:text-7xl duration-500 ease-in-out">
                   {item.count}
                 </span>
-                <p className="text-2xl group-hover:text-4xl duration-600">
+                <p className="text-2xl group-hover:text-4xl duration-500 ease-in-out">
                   {item.text}
                 </p>
               </div>
@@ -49,7 +49,7 @@ const CompanyState = () => {
               <div
                 key={index}
                 className="flex flex-col gap-2 bg-black/30 p-6 rounded-lg shadow-lg 
-                hover:bg-dark-red hover:scale-105 transition-all duration-600"
+                hover:bg-dark-red hover:scale-105 transition-all duration-500 ease-in-out"
               >
                 <span className="text-4xl">{item.count}</span>
                 <p className="text-2xl">{item.text}</p>
