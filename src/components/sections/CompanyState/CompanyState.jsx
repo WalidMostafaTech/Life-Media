@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import SectionTitle from "../../../../components/common/SectionTitle";
+import SectionTitle from "../../common/SectionTitle";
 import { useEffect } from "react";
-import { getSetting } from "../../../../store/setting/settingAction";
+import { getSetting } from "../../../store/setting/settingAction";
 import { useTranslation } from "react-i18next";
-import EmptySection from "../../../../components/layout/EmptySection/EmptySection";
-import LoadingSection from "../../../../components/layout/Loading/LoadingSection";
+import EmptySection from "../../layout/EmptySection/EmptySection";
+import LoadingSection from "../../layout/Loading/LoadingSection";
 
 const CompanyState = () => {
   const { setting, loading } = useSelector((state) => state.setting);
@@ -22,16 +22,16 @@ const CompanyState = () => {
   return (
     <>
       {setting?.provenResults?.length > 0 ? (
-        <section id="Careers" className="container sectionPadding">
+        <article id="Careers" className="container sectionPadding">
           <SectionTitle title={t("company_state_title")} />
 
           {/* Desktop View */}
-          <div className="hidden xl:flex flex-wrap gap-4 justify-center">
+          <section className="hidden xl:flex flex-wrap gap-4 justify-center">
             {setting?.provenResults?.map((item, index) => (
               <div
                 key={index}
-                className="group flex flex-col min-w-1/5 gap-4 justify-end h-[400px] bg-black/30 p-6 rounded-lg shadow-lg 
-              hover:bg-dark-red hover:flex-grow transition-all duration-500 ease-in-out"
+                className="group flex flex-col min-w-1/5 gap-4 justify-end h-[400px] bg-light-gray p-6 rounded-lg shadow-lg 
+                hover:bg-dark-red hover:flex-grow transition-all duration-500 ease-in-out"
               >
                 <span className="text-4xl group-hover:text-7xl duration-500 ease-in-out">
                   {item.count}
@@ -41,10 +41,10 @@ const CompanyState = () => {
                 </p>
               </div>
             ))}
-          </div>
+          </section>
 
           {/* Mobile View */}
-          <div className="xl:hidden grid grid-cols-2 md:grid-cols-4 gap-4">
+          <section className="xl:hidden grid grid-cols-2 md:grid-cols-4 gap-4">
             {setting?.provenResults?.map((item, index) => (
               <div
                 key={index}
@@ -55,8 +55,8 @@ const CompanyState = () => {
                 <p className="text-2xl">{item.text}</p>
               </div>
             ))}
-          </div>
-        </section>
+          </section>
+        </article>
       ) : (
         <EmptySection />
       )}

@@ -26,12 +26,13 @@ const VideosSlider = () => {
   return (
     <>
       {videosSlider.length > 0 ? (
-        <section
-          className="pb-20 lg:pb-50 pt-10 lg:pt-20 bg-dark-gray overflow-hidden"
+        <article
+          className="pb-20 lg:pb-50 pt-10 lg:pt-20 bg-light-gray overflow-hidden"
           style={{ perspective: "1000px" }}
         >
           <SectionTitle title={t("videos_slider.title")} />
-          <div
+
+          <section
             className="overflow-hidden pt-8 lg:pt-20"
             style={{
               transformStyle: "preserve-3d",
@@ -46,7 +47,7 @@ const VideosSlider = () => {
             <div
               className={`absolute top-0 end-0 w-24 lg:w-64 h-full ${
                 direction === "ltr" ? "bg-gradient-to-l" : "bg-gradient-to-r"
-              } from-dark-gray via-dark-gray/70 to-transparent z-10 pointer-events-none`}
+              } from-light-gray via-light-gray/70 to-transparent z-10 pointer-events-none`}
             />
 
             <Marquee
@@ -71,8 +72,8 @@ const VideosSlider = () => {
                 </div>
               ))}
             </Marquee>
-          </div>
-        </section>
+          </section>
+        </article>
       ) : (
         <EmptySection />
       )}

@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getBanners } from "../../../../store/banners/bannersAction";
+import { getBanners } from "../../../store/banners/bannersAction";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import EmptySection from "../../../../components/layout/EmptySection/EmptySection";
-import LoadingSection from "../../../../components/layout/Loading/LoadingSection";
+import EmptySection from "../../layout/EmptySection/EmptySection";
+import LoadingSection from "../../layout/Loading/LoadingSection";
 
 const Hero = () => {
   const { banners, loading } = useSelector((state) => state.banners);
@@ -46,7 +46,7 @@ const Hero = () => {
                     <h1 className="text-3xl lg:text-5xl font-bold">
                       {banner?.title}
                     </h1>
-                    <p className="text-lg">{banner?.paragraph}</p>
+                    <p className="lg:text-lg">{banner?.paragraph}</p>
                     <div className="flex flex-col lg:flex-row flex-wrap gap-4">
                       {banner?.buttons.map((button, index) => (
                         <Link

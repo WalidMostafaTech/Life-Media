@@ -1,21 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { contactUsAct } from "../../../../store/contact-us/contactUsAction";
+import { contactUsAct } from "../../../store/contact-us/contactUsAction";
 import { GoArrowUpRight } from "react-icons/go";
 import ReCAPTCHA from "react-google-recaptcha";
+import { getGovernorates } from "../../../store/governorates/governoratesAction";
 
-const ContactUS = () => {
+const ContactUsSection = () => {
   const { loading, error } = useSelector((state) => state.contactUs);
+  const { governorates } = useSelector((state) => state.governorates);
   const { setting } = useSelector((state) => state.setting);
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    dispatch(getGovernorates());
+  }, [dispatch]);
 
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     phone: "",
     service: "",
+    governorate: "",
+    old_social_media_experiences: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -33,6 +41,12 @@ const ContactUS = () => {
     if (!formData.phone.match(/^\+?[0-9]{9,15}$/))
       newErrors.phone = t("contact.errors.phone");
     if (!formData.service) newErrors.service = t("contact.errors.service");
+    if (!formData.governorate)
+      newErrors.governorate = t("contact.errors.governorate");
+    if (formData.old_social_media_experiences === "")
+      newErrors.old_social_media_experiences = t(
+        "contact.errors.old_experience"
+      );
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -59,17 +73,24 @@ const ContactUS = () => {
         email: formData.email,
         phone: formData.phone,
         subject: formData.service,
+        governorate_id: formData.governorate,
+        old_social_media_experiences: parseInt(
+          formData.old_social_media_experiences
+        ),
         ...(setting?.recaptcha_enabled && { recaptcha: captchaValue }),
       };
 
       try {
         await dispatch(contactUsAct(form)).unwrap();
+        console.log(form);
         setSuccessMessage(true);
         setFormData({
           fullName: "",
           email: "",
           phone: "",
           service: "",
+          governorate: "",
+          old_social_media_experiences: "",
         });
         setCaptchaValue(null);
 
@@ -87,8 +108,8 @@ const ContactUS = () => {
   };
 
   return (
-    <section id="Contact" className="container sectionPadding">
-      <div className="grid lg:grid-cols-2 gap-10">
+    <article id="Contact" className="container sectionPadding">
+      <section className="grid lg:grid-cols-2 gap-10">
         <div>
           <h2 className="text-5xl font-bold mb-4">
             {t("contact.title.line1")}
@@ -102,8 +123,9 @@ const ContactUS = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="bg-dark-gray p-8 rounded-lg space-y-4"
+          className="bg-light-gray p-8 rounded-lg space-y-4"
         >
+          {/* Full Name */}
           <div>
             <label className="block mb-1">{t("contact.full_name")}</label>
             <input
@@ -112,7 +134,7 @@ const ContactUS = () => {
               value={formData.fullName}
               onChange={handleChange}
               placeholder={t("contact.full_name_placeholder")}
-              className={`w-full p-4 rounded-lg text-lg bg-light-gray border-2 ${
+              className={`w-full p-4 rounded-lg text-lg bg-dark-gray border-2 ${
                 errors.fullName ? "border-dark-red" : "border-transparent"
               } focus:outline-none text-white`}
             />
@@ -123,6 +145,7 @@ const ContactUS = () => {
             )}
           </div>
 
+          {/* Email */}
           <div>
             <label className="block mb-1">{t("contact.email")}</label>
             <input
@@ -131,7 +154,7 @@ const ContactUS = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder={t("contact.email_placeholder")}
-              className={`w-full p-4 rounded-lg text-lg bg-light-gray border-2 ${
+              className={`w-full p-4 rounded-lg text-lg bg-dark-gray border-2 ${
                 errors.email ? "border-dark-red" : "border-transparent"
               } focus:outline-none text-white`}
             />
@@ -140,6 +163,7 @@ const ContactUS = () => {
             )}
           </div>
 
+          {/* Phone */}
           <div>
             <label className="block mb-1">{t("contact.phone")}</label>
             <input
@@ -148,7 +172,7 @@ const ContactUS = () => {
               value={formData.phone}
               onChange={handleChange}
               placeholder={t("contact.phone_placeholder")}
-              className={`w-full p-4 rounded-lg text-lg bg-light-gray border-2 ${
+              className={`w-full p-4 rounded-lg text-lg bg-dark-gray border-2 ${
                 errors.phone ? "border-dark-red" : "border-transparent"
               } focus:outline-none text-white`}
             />
@@ -157,13 +181,14 @@ const ContactUS = () => {
             )}
           </div>
 
+          {/* Service */}
           <div>
             <label className="block mb-1">{t("contact.service")}</label>
             <select
               name="service"
               value={formData.service}
               onChange={handleChange}
-              className={`w-full p-4 rounded-lg text-lg bg-light-gray border-2 cursor-pointer ${
+              className={`w-full p-4 rounded-lg text-lg bg-dark-gray border-2 cursor-pointer ${
                 errors.service ? "border-dark-red" : "border-transparent"
               } focus:outline-none text-white`}
             >
@@ -183,6 +208,66 @@ const ContactUS = () => {
             )}
           </div>
 
+          {/* Governorate */}
+          <div>
+            <label className="block mb-1">{t("contact.governorate")}</label>
+            <select
+              name="governorate"
+              value={formData.governorate}
+              onChange={handleChange}
+              className={`w-full p-4 rounded-lg text-lg bg-dark-gray border-2 cursor-pointer ${
+                errors.governorate ? "border-dark-red" : "border-transparent"
+              } focus:outline-none text-white`}
+            >
+              <option value="">{t("contact.choose_governorate")}</option>
+              {governorates?.map((gov) => (
+                <option key={gov.id} value={gov.id}>
+                  {gov.name}
+                </option>
+              ))}
+            </select>
+            {errors.governorate && (
+              <p className="text-dark-red font-semibold mt-1">
+                {errors.governorate}
+              </p>
+            )}
+          </div>
+
+          {/* Radio Buttons */}
+          <div>
+            <label className="block mb-2 font-medium">
+              {t("contact.old_experience")}
+            </label>
+            <div className="flex gap-6">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="old_social_media_experiences"
+                  value="1"
+                  checked={formData.old_social_media_experiences === "1"}
+                  onChange={handleChange}
+                />
+                {t("contact.yes")}
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="old_social_media_experiences"
+                  value="0"
+                  checked={formData.old_social_media_experiences === "0"}
+                  onChange={handleChange}
+                />
+                {t("contact.no")}
+              </label>
+            </div>
+            {errors.old_social_media_experiences && (
+              <p className="text-dark-red font-semibold mt-1">
+                {errors.old_social_media_experiences}
+              </p>
+            )}
+          </div>
+
+          {/* Recaptcha */}
           {setting?.recaptcha_enabled && (
             <div className="flex flex-col items-center">
               <ReCAPTCHA
@@ -201,6 +286,7 @@ const ContactUS = () => {
             </div>
           )}
 
+          {/* Messages */}
           <div
             className={`w-full text-center text-xl bg-green-600 text-white font-semibold rounded-full overflow-hidden
             duration-500 ease-in-out ${
@@ -223,6 +309,7 @@ const ContactUS = () => {
             {t("contact.error_message")}
           </div>
 
+          {/* Submit Button */}
           <button
             disabled={loading}
             type="submit"
@@ -237,9 +324,9 @@ const ContactUS = () => {
             )}
           </button>
         </form>
-      </div>
-    </section>
+      </section>
+    </article>
   );
 };
 
-export default ContactUS;
+export default ContactUsSection;

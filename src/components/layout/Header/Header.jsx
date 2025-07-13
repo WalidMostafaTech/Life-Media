@@ -39,7 +39,13 @@ const Header = () => {
     setActiveNav(false);
   };
 
-  const linksList = ["Home", "Projects", "Services", "About", "Careers"];
+  const linksList = [
+    { name: "header.home", path: "/" },
+    { name: "header.projects", path: "/projects" },
+    { name: "header.services", path: "/services" },
+    { name: "header.about", path: "/about" },
+    { name: "header.careers", path: "/careers" },
+  ];
 
   return (
     <>
@@ -65,22 +71,22 @@ const Header = () => {
           </div>
 
           <nav className="flex flex-col items-center lg:flex-row gap-4 lg:gap-8">
-            {linksList.map((item) => (
-              <a
-                key={item}
-                href={`#${item}`}
-                className="navLink"
+            {linksList.map((link) => (
+              <Link
+                to={link.path}
+                key={link.name}
+                className="navLink capitalize"
                 onClick={() => setActiveNav(false)}
               >
-                {t(item)}
-              </a>
+                {t(link.name)}
+              </Link>
             ))}
           </nav>
 
           <div className="flex items-center justify-center flex-wrap gap-2">
-            <a href="#Contact" className="mainBtn">
-              {t("join_us")} <GoArrowUpRight />
-            </a>
+            <Link to="/contact-us" className="mainBtn">
+              {t("header.join_us")} <GoArrowUpRight />
+            </Link>
             <button onClick={handleChangeLang} className="mainBtn transparent">
               {lang === "en" ? "العربية" : "English"}
             </button>

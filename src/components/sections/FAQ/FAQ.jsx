@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import SectionTitle from "../../../../components/common/SectionTitle";
+import SectionTitle from "../../common/SectionTitle";
 import { FaPlus, FaMinus } from "react-icons/fa";
-import { getQuestions } from "../../../../store/questions/questionsAction";
+import { getQuestions } from "../../../store/questions/questionsAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import EmptySection from "../../../../components/layout/EmptySection/EmptySection";
-import LoadingSection from "../../../../components/layout/Loading/LoadingSection";
+import EmptySection from "../../layout/EmptySection/EmptySection";
+import LoadingSection from "../../layout/Loading/LoadingSection";
 
 const FAQ = () => {
   const { t } = useTranslation();
@@ -29,14 +29,14 @@ const FAQ = () => {
   return (
     <>
       {questions.length > 0 ? (
-        <section className="container sectionPadding">
+        <article className="container sectionPadding">
           <SectionTitle title={t("faq.title")} />
 
-          <div className="space-y-4">
+          <section className="space-y-4">
             {questions?.map((item, index) => (
               <div
                 key={item.id}
-                className="bg-dark-gray rounded-xl transition-all duration-300 px-4"
+                className="bg-light-gray rounded-xl transition-all duration-300 px-4"
               >
                 <div
                   className="flex justify-between items-center cursor-pointer py-4"
@@ -62,8 +62,8 @@ const FAQ = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </section>
+          </section>
+        </article>
       ) : (
         <EmptySection />
       )}

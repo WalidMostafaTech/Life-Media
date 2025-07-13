@@ -1,6 +1,11 @@
-const SectionTitle = ({ title }) => {
+const SectionTitle = ({ title, subTitle }) => {
   return (
-    <h2 className="text-3xl lg:text-5xl mb-4 lg:mb-8 text-center">{title}</h2>
+    <hgroup className="mb-4 lg:mb-8 text-center">
+      <h2 className="text-3xl lg:text-5xl">{title}</h2>
+      {subTitle && (
+        <p className="text-lg lg:text-2xl text-center mt-2">{subTitle}</p>
+      )}
+    </hgroup>
   );
 };
 

@@ -3,8 +3,8 @@
 :root {
   --dark-red: #5a0211;
   --light-red: #e13d3d;
-  --light-gray: #1f1f1f;
-  --dark-gray: #1a1a1a;
+  --light-gray: #1A1A1A;
+  --dark-gray: #121212;
 }
 
 @theme {
@@ -16,7 +16,7 @@
 
 body {
   font-family: Tajawal, sans-serif;
-  background-color: var(--light-gray);
+  background-color: var(--dark-gray);
   color: white;
 }
 
@@ -59,7 +59,8 @@ html {
       @apply bg-transparent text-white ring-white ring-2;
     }
 
-    &:hover {
+    &:hover,
+    &.active {
       @apply shadow-light-red bg-red-900 ring-3;
 
       &.light {

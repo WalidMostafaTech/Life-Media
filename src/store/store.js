@@ -9,6 +9,7 @@ import successStoriesSlice from "./success_stories/success_storiesSlice";
 import solutionsSlice from "./solutions/solutionsSlice";
 import settingSlice from "./setting/settingSlice";
 import contactUsSlice from "./contact-us/contactUsSlice";
+import governoratesSlice from "./governorates/governoratesSlice";
 import videoSectionSlice from "./videoSection/videoSectionSlice";
 import videosSliderSlice from "./videosSlider/videosSliderSlice";
 
@@ -24,6 +25,7 @@ export const store = configureStore({
     solutions: solutionsSlice,
     setting: settingSlice,
     contactUs: contactUsSlice,
+    governorates: governoratesSlice,
     videoSection: videoSectionSlice,
     videosSlider: videosSliderSlice,
   },

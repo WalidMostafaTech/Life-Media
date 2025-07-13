@@ -1,11 +1,11 @@
 import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getBrands } from "../../../../store/brands/brandsAction";
+import { getBrands } from "../../../store/brands/brandsAction";
 import { useTranslation } from "react-i18next";
-import CTA from "../../../../components/common/CTA";
-import EmptySection from "../../../../components/layout/EmptySection/EmptySection";
-import LoadingSection from "../../../../components/layout/Loading/LoadingSection";
+import CTA from "../../common/CTA";
+import EmptySection from "../../layout/EmptySection/EmptySection";
+import LoadingSection from "../../layout/Loading/LoadingSection";
 import Marquee from "react-fast-marquee";
 
 const Partners = () => {
@@ -44,7 +44,7 @@ const Partners = () => {
                 gradient={false}
                 style={{ direction: "ltr" }}
               >
-                {[...brands, ...brands].map((item, index) => (
+                {brands?.map((item, index) => (
                   <div key={index} className="mx-8 min-w-[100px]">
                     <img
                       loading="lazy"

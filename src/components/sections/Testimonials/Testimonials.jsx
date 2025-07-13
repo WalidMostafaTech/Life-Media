@@ -1,12 +1,12 @@
-import SectionTitle from "../../../../components/common/SectionTitle";
-import noiseImg from "../../../../assets/images/noise.png";
+import SectionTitle from "../../common/SectionTitle";
+import noiseImg from "../../../assets/images/noise.png";
 import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getTestimonials } from "../../../../store/testimonials/testimonialsAction";
+import { getTestimonials } from "../../../store/testimonials/testimonialsAction";
 import { useTranslation } from "react-i18next";
-import EmptySection from "../../../../components/layout/EmptySection/EmptySection";
-import LoadingSection from "../../../../components/layout/Loading/LoadingSection";
+import EmptySection from "../../layout/EmptySection/EmptySection";
+import LoadingSection from "../../layout/Loading/LoadingSection";
 import Marquee from "react-fast-marquee";
 
 const Testimonials = () => {
@@ -27,10 +27,10 @@ const Testimonials = () => {
   return (
     <>
       {testimonials.length > 0 ? (
-        <section className="sectionPadding">
+        <article className="sectionPadding">
           <SectionTitle title={t("testimonials.title")} />
 
-          <div className="overflow-hidden">
+          <section className="overflow-hidden">
             <Marquee
               direction={direction === "rtl" ? "right" : "left"}
               speed={80}
@@ -38,7 +38,7 @@ const Testimonials = () => {
               gradient={false}
               style={{ direction: "ltr" }}
             >
-              {[...testimonials, ...testimonials].map((item, index) => (
+              {testimonials?.map((item, index) => (
                 <div key={index} className="mx-4 w-xs lg:w-xl">
                   <div
                     style={{ backgroundImage: `url(${noiseImg})` }}
@@ -79,8 +79,8 @@ const Testimonials = () => {
                 </div>
               ))}
             </Marquee>
-          </div>
-        </section>
+          </section>
+        </article>
       ) : (
         <EmptySection />
       )}

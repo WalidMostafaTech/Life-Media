@@ -1,10 +1,12 @@
 {
-  "Home": "Home",
-  "Projects": "Projects",
-  "Services": "Services",
-  "About": "About",
-  "join_us": "Join Us",
-  "Careers": "Careers",
+  "header": {
+    "home": "home",
+    "projects": "projects",
+    "services": "services",
+    "about": "about",
+    "careers": "careers",
+    "join_us": "Join Us"
+  },
   "Loading": "Loading",
   "company_state_title": "Proven Results, Trusted by Many",
   "cta": {
@@ -57,6 +59,8 @@
     "phone_placeholder": "+2012345678",
     "service": "What do you need help with?",
     "choose_service": "Choose a service",
+    "governorate": "Governorate",
+    "choose_governorate": "Choose Governorate",
     "services": {
       "web": "Website Development",
       "design": "UI/UX Design",
@@ -69,8 +73,13 @@
       "email": "Invalid email address",
       "phone": "Invalid phone number",
       "service": "Please choose a service",
-      "recaptcha": "Please verify the reCAPTCHA"
+      "recaptcha": "Please verify the reCAPTCHA",
+      "governorate": "Please select a governorate",
+      "old_experience": "Please specify if you have previous experiences"
     },
+    "old_experience": "Do you have previous social media experiences?",
+    "yes": "Yes",
+    "no": "No",
     "success_message": "Form submitted successfully",
     "error_message": "Unexpected error, please try again later."
   },

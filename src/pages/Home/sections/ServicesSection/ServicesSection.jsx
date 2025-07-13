@@ -8,7 +8,7 @@ import EmptySection from "../../../../components/layout/EmptySection/EmptySectio
 import CTA from "../../../../components/common/CTA";
 import LoadingSection from "../../../../components/layout/Loading/LoadingSection";
 
-const Services = () => {
+const ServicesSection = () => {
   const { t } = useTranslation();
   const { solutions, loading } = useSelector((state) => state.solutions);
   const dispatch = useDispatch();
@@ -25,15 +25,16 @@ const Services = () => {
     <>
       {solutions.length > 0 ? (
         <>
-          <section id="Services" className="container sectionPadding">
+          <article id="Services" className="container sectionPadding">
             <SectionTitle title={t("services.title")} />
 
-            <div className="grid lg:grid-cols-2 gap-4">
+            <section className="grid lg:grid-cols-2 gap-4">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="group relative rounded-4xl overflow-hidden sm:col-span-2">
                   <img
                     loading="lazy"
                     src={solutions[0]?.image_url}
+                    alt={solutions[0]?.title}
                     className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
                   />
 
@@ -53,6 +54,7 @@ const Services = () => {
                   <img
                     loading="lazy"
                     src={solutions[1]?.image_url}
+                    alt={solutions[1]?.title}
                     className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
                   />
 
@@ -72,6 +74,7 @@ const Services = () => {
                   <img
                     loading="lazy"
                     src={solutions[2]?.image_url}
+                    alt={solutions[2]?.title}
                     className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
                   />
 
@@ -94,6 +97,7 @@ const Services = () => {
                   <img
                     loading="lazy"
                     src={solutions[3]?.image_url}
+                    alt={solutions[3]?.title}
                     className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
                   />
 
@@ -113,6 +117,7 @@ const Services = () => {
                   <img
                     loading="lazy"
                     src={solutions[4]?.image_url}
+                    alt={solutions[4]?.title}
                     className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
                   />
 
@@ -132,6 +137,7 @@ const Services = () => {
                   <img
                     loading="lazy"
                     src={solutions[5]?.image_url}
+                    alt={solutions[5]?.title}
                     className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-300 ease-in-out"
                   />
 
@@ -148,7 +154,7 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
 
             <a
               href="#"
@@ -156,7 +162,7 @@ const Services = () => {
             >
               {t("services.learn_more")} <GoArrowUpRight className="text-3xl" />
             </a>
-          </section>
+          </article>
 
           <CTA
             text1={t("cta.not_sure")}
@@ -171,4 +177,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default ServicesSection;
