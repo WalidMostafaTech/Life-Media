@@ -1,22 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getBanners } from "../../../store/banners/bannersAction";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import EmptySection from "../../layout/EmptySection/EmptySection";
 import LoadingSection from "../../layout/Loading/LoadingSection";
 
-const Hero = () => {
-  const { banners, loading } = useSelector((state) => state.banners);
-  const dispatch = useDispatch();
-
+const Hero = ({ banners, loading }) => {
   const direction = document.body.getAttribute("dir") || "ltr";
-
-  useEffect(() => {
-    dispatch(getBanners());
-  }, [dispatch]);
 
   if (loading) {
     return <LoadingSection />;
@@ -36,12 +26,20 @@ const Hero = () => {
         >
           {banners?.map((banner) => (
             <SwiperSlide key={banner.id}>
-              <article
-                id="Home"
-                style={{ backgroundImage: `url(${banner?.desktop_image_url})` }}
-                className="h-screen bg-cover bg-center bg-no-repeat"
-              >
-                <div className="container mx-auto px-4 h-full flex flex-col justify-end">
+              <article id="Home" className="h-screen w-full relative">
+                <picture className="absolute inset-0 z-[-1] w-full h-full">
+                  <source
+                    media="(max-width: 767px)"
+                    srcSet={banner.mobile_image_url}
+                  />
+                  <img
+                    src={banner.desktop_image_url}
+                    alt={banner.title}
+                    className="w-full h-full object-cover"
+                  />
+                </picture>
+
+                <div className="container mx-auto px-4 h-full flex flex-col justify-end relative z-10">
                   <div className="max-w-xl mb-20 flex flex-col items-center lg:items-start text-center lg:text-start mx-auto lg:mx-0 gap-4 text-white">
                     <h1 className="text-3xl lg:text-5xl font-bold">
                       {banner?.title}

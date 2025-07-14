@@ -3,12 +3,14 @@ import axios from "axios";
 
 export const getSolutions = createAsyncThunk(
   "solutions/getSolutions",
-  async (_, { rejectWithValue, getState }) => {
+  async (inHome = false, { rejectWithValue, getState }) => {
     try {
       const state = getState();
       const language = state.language.lang || "en";
 
-      const { data } = await axios.get("/solutions", {
+      const url = inHome ? "/solutions?in_home=1" : "/solutions";
+
+      const { data } = await axios.get(url, {
         headers: {
           lang: language,
         },

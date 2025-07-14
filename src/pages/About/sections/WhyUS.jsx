@@ -1,43 +1,27 @@
+import { useTranslation } from "react-i18next";
 import SectionTitle from "../../../components/common/SectionTitle";
+import LoadingSection from "../../../components/layout/Loading/LoadingSection";
 
-const WhyUS = () => {
-  const whyUS = [
-    {
-      title: "title title title title title title",
-    },
-    {
-      title: "title title title title title title",
-    },
-    {
-      title: "title title title title title title",
-    },
-    {
-      title: "title title title title title title",
-    },
-    {
-      title: "title title title title title title",
-    },
-    {
-      title: "title title title title title title",
-    },
-  ];
+const WhyUS = ({ data, loading }) => {
+  const { t } = useTranslation();
+
+  if (loading) {
+    return <LoadingSection />;
+  }
 
   return (
     <article className="container sectionPadding">
-      <SectionTitle title={"Why Us?"} />
+      <SectionTitle title={t("about.why_us")} />
 
-      <p className="text-lg mb-4">
-        Because we don’t just deliver projects — we deliver impact.We combine
-        creativity with strategy to craft digital experiences that are not only
-        beautiful but built to perform. Our team dives deep into your brand to
-        understand your goals, audience, and challenges — then we turn that
-        insight into powerful design and smart solutions.
-      </p>
+      <div
+        className="text-lg mb-4"
+        dangerouslySetInnerHTML={{ __html: data?.why_us_text }}
+      />
 
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {whyUS.map((item, index) => (
+        {data?.why_us_boxes?.map((item, index) => (
           <div key={index} className="h-48 p-4 bg-light-gray rounded-xl">
-            <h3 className="text-4xl font-bold">{item.title}</h3>
+            <h3 className="text-4xl font-bold">{item}</h3>
           </div>
         ))}
       </section>

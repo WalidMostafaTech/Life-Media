@@ -26,7 +26,7 @@ const ScrollSection = () => {
       <ScrollToTopButton isVisible={isVisible} />
 
       {/* contact */}
-      <ContactBtns isVisible={isVisible} />
+      {/* <ContactBtns isVisible={isVisible} /> */}
     </>
   );
 };

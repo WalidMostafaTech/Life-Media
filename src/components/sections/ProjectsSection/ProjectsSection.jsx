@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import SectionTitle from "../../common/SectionTitle";
 import { GoArrowUpRight } from "react-icons/go";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProjects } from "../../../store/projects/projectsAction";
 import { useTranslation } from "react-i18next";
 import CTA from "../../common/CTA";
@@ -10,46 +10,68 @@ import LoadingSection from "../../layout/Loading/LoadingSection";
 import { Link } from "react-router-dom";
 import ProjectCard from "./ProjectCard";
 import FilterProjects from "./FilterProjects";
+import { getCategories } from "../../../store/categories/categoriesAction";
 
 const ProjectsSection = ({ home = false }) => {
   const { t } = useTranslation();
   const { projects, loading } = useSelector((state) => state.projects);
+  const { categories, loading: categoriesLoading } = useSelector(
+    (state) => state.categories
+  );
+  const [activeCategory, setActiveCategory] = useState("all");
+  const filteredProjects = projects.filter(
+    (project) => project.category.name === activeCategory
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProjects());
-  }, [dispatch]);
-
-  const displayedProjects = home ? projects.slice(0, 3) : projects;
+    dispatch(getProjects(home));
+    dispatch(getCategories());
+  }, [dispatch, home]);
 
   if (loading) return <LoadingSection />;
 
   return (
     <>
-      {displayedProjects.length > 0 ? (
+      {projects.length > 0 ? (
         <>
           <article id="Projects" className="container sectionPadding">
             {home && <SectionTitle title={t("projects.title")} />}
 
-            {!home && <FilterProjects />}
+            {!home && (
+              <FilterProjects
+                categories={categories}
+                loading={categoriesLoading}
+                activeCategory={activeCategory}
+                setActiveCategory={setActiveCategory}
+              />
+            )}
 
             <section
-              className={`${
-                home ? "grid grid-cols-1" : "grid grid-cols-1 lg:grid-cols-2"
-              } gap-4`}
+              className={`grid gap-4 ${
+                home
+                  ? "grid-cols-1"
+                  : (activeCategory === "all" ? projects : filteredProjects)
+                      .length >= 3
+                  ? "grid-cols-1 lg:grid-cols-2"
+                  : "grid-cols-1"
+              }`}
             >
-              {displayedProjects.map((project, index) => {
-                const isFullWidth = index % 5 === 0;
+              {(activeCategory === "all" ? projects : filteredProjects).map(
+                (project, index) => {
+                  const isFullWidth = index % 5 === 0;
 
-                return (
-                  <ProjectCard
-                    key={project.id}
-                    project={project}
-                    home={home}
-                    isFullWidth={isFullWidth}
-                  />
-                );
-              })}
+                  return (
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      home={home}
+                      isFullWidth={isFullWidth}
+                    />
+                  );
+                }
+              )}
             </section>
 
             {home && (

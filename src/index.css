@@ -3,7 +3,7 @@
 :root {
   --dark-red: #5a0211;
   --light-red: #e13d3d;
-  --light-gray: #1A1A1A;
+  --light-gray: #1a1a1a;
   --dark-gray: #121212;
 }
 
@@ -43,7 +43,7 @@ html {
   }
 
   .mainBtn {
-    @apply bg-dark-red font-bold text-lg py-2 px-4 rounded-full cursor-pointer
+    @apply bg-dark-red font-bold text-lg capitalize py-2 px-4 rounded-full cursor-pointer
     flex items-center justify-center gap-2 shadow-[0px_0px_70px_0px] shadow-transparent ring-black/20
     transition-all duration-300;
 
@@ -61,7 +61,7 @@ html {
 
     &:hover,
     &.active {
-      @apply shadow-light-red bg-red-900 ring-3;
+      @apply shadow-light-red shadow-[0px_0px_70px_0px] bg-red-900 ring-3;
 
       &.light {
         @apply text-white;

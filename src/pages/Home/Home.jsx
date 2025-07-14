@@ -10,20 +10,30 @@ import VideoSection from "./sections/VideoSection/VideoSection";
 import VideosSlider from "./sections/VideosSlider/VideosSlider";
 import { Helmet } from "react-helmet";
 import ProjectsSection from "../../components/sections/ProjectsSection/ProjectsSection";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getBanners } from "../../store/banners/bannersAction";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { banners, loading } = useSelector((state) => state.banners);
+  const dispatch = useDispatch();
+
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    dispatch(getBanners("home"));
+  }, [dispatch]);
+
   return (
     <>
       <Helmet>
-        <title>الرئيسية | Life Media</title>
-        <meta
-          name="description"
-          content="شركة Life Media تقدم أفضل خدمات التصميم والتسويق الإلكتروني."
-        />
-        <meta property="og:title" content="الرئيسية | Life Media" />
+        <title>{t("helmet.home_title")}</title>
+        <meta name="description" content={t("helmet.home_description")} />
+        <meta property="og:title" content={t("helmet.home_title")} />
         <meta
           property="og:description"
-          content="تعرف على خدماتنا ومشاريعنا وآراء العملاء."
+          content={t("helmet.home_description")}
         />
         <meta property="og:image" content="/logo.png" />
         <meta property="og:type" content="website" />
@@ -31,7 +41,7 @@ const Home = () => {
       </Helmet>
 
       <section>
-        <Hero />
+        <Hero banners={banners} loading={loading} />
         <CompanyState />
         <VideoSection />
         <Partners />

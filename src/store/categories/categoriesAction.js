@@ -1,14 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getBanners = createAsyncThunk(
-  "banners/getBanners",
-  async (page, { rejectWithValue, getState }) => {
+export const getCategories = createAsyncThunk(
+  "categories/getCategories",
+  async (_, { rejectWithValue, getState }) => {
     try {
       const state = getState();
       const language = state.language.lang || "en";
 
-      const { data } = await axios.get(`/banners?page=${page}`, {
+      const { data } = await axios.get("/categories", {
         headers: {
           lang: language,
         },

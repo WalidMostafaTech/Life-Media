@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { toggleLanguage } from "../../../store/languageSlice";
 import Loading from "../Loading/LoadingPage";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const [activeNav, setActiveNav] = useState(false);
@@ -44,7 +44,7 @@ const Header = () => {
     { name: "header.projects", path: "/projects" },
     { name: "header.services", path: "/services" },
     { name: "header.about", path: "/about" },
-    { name: "header.careers", path: "/careers" },
+    { name: "header.careers", path: "/contact-us" },
   ];
 
   return (
@@ -54,8 +54,8 @@ const Header = () => {
         ref={headerRef}
       >
         <div
-          className={`flex flex-col lg:flex-row items-center justify-between gap-4 px-4 py-2 bg-black/50 backdrop-blur-2xl shadow-md rounded-4xl 
-            overflow-hidden transition-all duration-500 ease-out max-h-[60px] ${
+          className={`flex flex-col lg:flex-row items-center justify-between gap-4 px-4 py-2 lg:py-8 bg-black/50 backdrop-blur-2xl shadow-md rounded-4xl 
+            overflow-hidden transition-all duration-500 ease-in-out max-h-[60px] ${
               activeNav ? "max-h-[500px] lg:max-h-[60px]" : ""
             }`}
         >
@@ -72,14 +72,14 @@ const Header = () => {
 
           <nav className="flex flex-col items-center lg:flex-row gap-4 lg:gap-8">
             {linksList.map((link) => (
-              <Link
+              <NavLink
                 to={link.path}
                 key={link.name}
                 className="navLink capitalize"
                 onClick={() => setActiveNav(false)}
               >
                 {t(link.name)}
-              </Link>
+              </NavLink>
             ))}
           </nav>
 

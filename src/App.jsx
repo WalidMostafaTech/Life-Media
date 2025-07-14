@@ -5,7 +5,7 @@ import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import { useSelector } from "react-redux";
 import "./i18n.js";
-import ScrollSection from "./components/layout/ScrollSection/ScrollSection.jsx";
+import ScrollSection from "./components/sections/ScrollSection/ScrollSection.jsx";
 
 function App() {
   const { pathname } = useLocation();

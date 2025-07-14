@@ -147,38 +147,6 @@ const Footer = () => {
 };
 
 export default Footer;
-// "footer": {
-//   "title": "A creative agency helping brands grow through design, strategy, and impact.",
-//   "explore": "Explore",
-//   "about": "About Us",
-//   "services": "Services",
-//   "projects": "Projects",
-//   "success": "Success Stories",
-//   "careers": "Careers",
-//   "lets_connect": "Let's Connect",
-//   "email": "Email",
-//   "phone": "Phone",
-//   "location": "Location",
-//   "button": "15-Min Free Consultation",
-//   "rights": "© 2025 Life Media Production. All rights reserved.",
-//   "terms": "Terms & Conditions",
-//   "privacy": "Privacy Policy"
-// }
 
-// "footer": {
-//   "title": "وكالة إبداعية تساعد العلامات التجارية على النمو من خلال التصميم والاستراتيجية والتأثير.",
-//   "explore": "تصفح",
-//   "about": "من نحن",
-//   "services": "الخدمات",
-//   "projects": "المشاريع",
-//   "success": "قصص النجاح",
-//   "careers": "الوظائف",
-//   "lets_connect": "تواصل معنا",
-//   "email": "البريد الإلكتروني",
-//   "phone": "رقم الهاتف",
-//   "location": "العنوان",
-//   "button": "استشارة مجانية لمدة 15 دقيقة",
-//   "rights": "© 2025 لايف ميديا برودكشن. جميع الحقوق محفوظة.",
-//   "terms": "الشروط والأحكام",
-//   "privacy": "سياسة الخصوصية"
-// }
+
+

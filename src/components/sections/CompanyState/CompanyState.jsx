@@ -30,7 +30,7 @@ const CompanyState = () => {
             {setting?.provenResults?.map((item, index) => (
               <div
                 key={index}
-                className="group flex flex-col min-w-1/5 gap-4 justify-end h-[400px] bg-light-gray p-6 rounded-lg shadow-lg 
+                className="group flex flex-col min-w-1/5 gap-4 justify-end h-[400px] bg-light-gray p-6 rounded-3xl
                 hover:bg-dark-red hover:flex-grow transition-all duration-500 ease-in-out"
               >
                 <span className="text-4xl group-hover:text-7xl duration-500 ease-in-out">

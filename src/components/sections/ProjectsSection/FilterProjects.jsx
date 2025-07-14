@@ -1,20 +1,38 @@
-import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import LoadingSection from "../../layout/Loading/LoadingSection";
 
-const FilterProjects = () => {
-  const categories = ["All", "Web", "Mobile", "Desktop", "UI/UX"];
-  const [activeCategory, setActiveCategory] = useState("All");
+const FilterProjects = ({
+  categories,
+  loading,
+  setActiveCategory,
+  activeCategory,
+}) => {
+  const { t } = useTranslation();
+
+  if (loading) {
+    return <LoadingSection />;
+  }
 
   return (
     <div className="flex flex-wrap gap-4 mb-4 lg:mb-8">
-      {categories.map((item, index) => (
+      <button
+        onClick={() => setActiveCategory("all")}
+        className={`mainBtn transparent ${
+          activeCategory === "all" ? "active" : ""
+        }`}
+      >
+        {t("all")}
+      </button>
+
+      {categories?.map((item) => (
         <button
-          key={index}
-          onClick={() => setActiveCategory(item)}
+          key={item.id}
+          onClick={() => setActiveCategory(item.name)}
           className={`mainBtn transparent ${
-            activeCategory === item ? "active" : ""
+            activeCategory === item.name ? "active" : ""
           }`}
         >
-          {item}
+          {item.name}
         </button>
       ))}
     </div>

@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import EmptySection from "../../../../components/layout/EmptySection/EmptySection";
 import CTA from "../../../../components/common/CTA";
 import LoadingSection from "../../../../components/layout/Loading/LoadingSection";
+import { Link } from "react-router-dom";
 
 const ServicesSection = () => {
   const { t } = useTranslation();
@@ -14,7 +15,7 @@ const ServicesSection = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSolutions());
+    dispatch(getSolutions(true));
   }, [dispatch]);
 
   if (loading) {
@@ -156,12 +157,12 @@ const ServicesSection = () => {
               </div>
             </section>
 
-            <a
-              href="#"
+            <Link
+              to="/services"
               className="flex items-center gap-1 w-max mx-auto mt-6 font-semibold text-light-red hover:underline"
             >
               {t("services.learn_more")} <GoArrowUpRight className="text-3xl" />
-            </a>
+            </Link>
           </article>
 
           <CTA
