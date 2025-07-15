@@ -15,8 +15,6 @@ const ServicesSection = () => {
     return <LoadingSection />;
   }
 
-  console.log(solutions);
-
   return (
     <section className="container sectionPadding">
       <div className="space-y-8">

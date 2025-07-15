@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import LoadingSection from "../../components/layout/Loading/LoadingSection";
 import { Helmet } from "react-helmet";
 
-const ProjectPage = () => {
+const ProjectDetails = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const { project, loading } = useSelector((state) => state.projects);
@@ -41,7 +41,14 @@ const ProjectPage = () => {
 
       <article>
         <ProjectHero project={project} />
+
+        <div
+          className="text-xl lg:text-3xl container sectionPadding"
+          dangerouslySetInnerHTML={{ __html: project?.long_description }}
+        />
+
         <ProjectImages projectImages={project?.posters} />
+
         <CTA
           text1={t("cta.need_something")}
           text2={t("cta.next_success")}
@@ -53,4 +60,4 @@ const ProjectPage = () => {
   );
 };
 
-export default ProjectPage;
+export default ProjectDetails;

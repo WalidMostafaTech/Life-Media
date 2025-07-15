@@ -7,8 +7,9 @@ const Home = React.lazy(() => import("../pages/Home/Home"));
 const About = React.lazy(() => import("../pages/About/About"));
 const ContactUs = React.lazy(() => import("../pages/ContactUs/ContactUs"));
 const Projects = React.lazy(() => import("../pages/Projects/Projects"));
-const ProjectPage = React.lazy(() => import("../pages/ProjectPage/ProjectPage"));
+const ProjectDetails = React.lazy(() => import("../pages/ProjectDetails/ProjectDetails"));
 const Services = React.lazy(() => import("../pages/Services/Services"));
+const NewPages = React.lazy(() => import("../pages/NewPages/NewPages"));
 
 const router = createBrowserRouter([
   {
@@ -19,8 +20,9 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "contact-us", element: <ContactUs /> },
       { path: "projects", element: <Projects /> },
-      { path: "projects/:id", element: <ProjectPage /> },
+      { path: "projects/:id", element: <ProjectDetails /> },
       { path: "services", element: <Services /> },
+      { path: "pages/:slug", element: <NewPages /> },
     ],
   },
 ]);

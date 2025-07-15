@@ -14,6 +14,9 @@ import aboutSlice from "./about/aboutSlice";
 import governoratesSlice from "./governorates/governoratesSlice";
 import videoSectionSlice from "./videoSection/videoSectionSlice";
 import videosSliderSlice from "./videosSlider/videosSliderSlice";
+import pagesSlice from "./pages/pagesSlice";
+import officesSlice from "./offices/officesSlice";
+import imagesSliderSlice from "./imagesSlider/imagesSliderSlice";
 
 export const store = configureStore({
   reducer: {
@@ -22,7 +25,7 @@ export const store = configureStore({
     testimonials: testimonialsSlice,
     brands: brandsSlice,
     projects: projectsSlice,
-    categories:categoriesSlice,
+    categories: categoriesSlice,
     questions: questionsSlice,
     successStories: successStoriesSlice,
     solutions: solutionsSlice,
@@ -32,5 +35,8 @@ export const store = configureStore({
     governorates: governoratesSlice,
     videoSection: videoSectionSlice,
     videosSlider: videosSliderSlice,
+    pages: pagesSlice,
+    offices: officesSlice,
+    imagesSlider: imagesSliderSlice,
   },
 });

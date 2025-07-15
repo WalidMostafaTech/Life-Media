@@ -123,7 +123,7 @@ const ContactUsSection = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="bg-light-gray p-8 rounded-lg space-y-4"
+          className="bg-light-gray p-8 rounded-3xl space-y-4"
         >
           {/* Full Name */}
           <div>

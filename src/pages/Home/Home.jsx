@@ -7,22 +7,33 @@ import FAQ from "../../components/sections/FAQ/FAQ";
 import ContactUsSection from "../../components/sections/ContactUsSection/ContactUsSection";
 import Hero from "../../components/sections/Hero/Hero";
 import VideoSection from "./sections/VideoSection/VideoSection";
-import VideosSlider from "./sections/VideosSlider/VideosSlider";
+import MediaMarquee from "./sections/MediaMarquee/MediaMarquee";
 import { Helmet } from "react-helmet";
 import ProjectsSection from "../../components/sections/ProjectsSection/ProjectsSection";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getBanners } from "../../store/banners/bannersAction";
 import { useTranslation } from "react-i18next";
+import { getVideosSlider } from "../../store/videosSlider/videosSliderAction";
+import { getImagesSlider } from "../../store/imagesSlider/imagesSliderAction";
 
 const Home = () => {
   const { banners, loading } = useSelector((state) => state.banners);
   const dispatch = useDispatch();
-
   const { t } = useTranslation();
+
+  const { videosSlider, loading: videosSliderLoading } = useSelector(
+    (state) => state.videosSlider
+  );
+
+  const { imagesSlider, loading: imagesSliderLoading } = useSelector(
+    (state) => state.imagesSlider
+  );
 
   useEffect(() => {
     dispatch(getBanners("home"));
+    dispatch(getVideosSlider());
+    dispatch(getImagesSlider());
   }, [dispatch]);
 
   return (
@@ -45,8 +56,18 @@ const Home = () => {
         <CompanyState />
         <VideoSection />
         <Partners />
-        <VideosSlider />
+        <MediaMarquee
+          media={videosSlider}
+          loading={videosSliderLoading}
+          type="video"
+          title="videos_slider.title"
+        />
         <ProjectsSection home />
+        <MediaMarquee
+          media={imagesSlider}
+          loading={imagesSliderLoading}
+          title="images_slider.title"
+        />
         <ServicesSection />
         <Testimonials />
         <SuccessStory />
