@@ -44,7 +44,7 @@ const SolutionsWeOffer = () => {
       ) : (
         <section className="container sectionPadding">
           <div
-            className="bg-light-gray rounded-2xl p-4 break-words overflow-x-auto"
+            className="htmlContent bg-light-gray rounded-2xl p-4 break-words overflow-x-auto"
             dangerouslySetInnerHTML={{ __html: solution?.content }}
           ></div>
         </section>

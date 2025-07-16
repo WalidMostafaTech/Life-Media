@@ -15,7 +15,7 @@ const AboutUs = ({ data, loading }) => {
       />
 
       <div
-        className="text-xl lg:text-3xl"
+        className="htmlContent"
         dangerouslySetInnerHTML={{ __html: data?.about_us_text }}
       />
     </article>

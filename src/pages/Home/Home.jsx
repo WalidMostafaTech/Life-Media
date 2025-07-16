@@ -65,6 +65,11 @@ const Home = () => {
 
       <section>
         <Hero banners={banners} loading={loading} />
+        <StorySlider
+          loading={newLiveMediaLoading}
+          data={newLiveMedia}
+          title="new_live_media.title"
+        />
         <CompanyState />
         <VideoSection />
         <Partners />
@@ -88,11 +93,7 @@ const Home = () => {
           title="success_story.title"
         />
         <FAQ />
-        <StorySlider
-          loading={newLiveMediaLoading}
-          data={newLiveMedia}
-          title="new_live_media.title"
-        />
+
         <ContactUsSection />
       </section>
     </>

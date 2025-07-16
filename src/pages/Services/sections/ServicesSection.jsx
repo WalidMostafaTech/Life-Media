@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSolutions } from "../../store/solutions/solutionsAction";
-import LoadingSection from "../../components/layout/Loading/LoadingSection";
+import { getSolutions } from "../../../store/solutions/solutionsAction";
+import LoadingSection from "../../../components/layout/Loading/LoadingSection";
 
 const ServicesSection = () => {
   const { solutions, loading } = useSelector((state) => state.solutions);
@@ -27,7 +27,7 @@ const ServicesSection = () => {
               src={solution.image_url}
               alt={solution.title}
               loading="lazy"
-              className="w-full lg:w-1/2 lg:aspect-square object-cover rounded-4xl"
+              className="w-full lg:w-1/2 lg:h-[500px] object-cover rounded-4xl"
             />
 
             <div className="space-y-2 lg:space-y-4 w-full lg:w-1/2 content-center">

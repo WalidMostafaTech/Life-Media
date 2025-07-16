@@ -37,8 +37,8 @@ const StorySlider = ({ loading, data, title }) => {
           >
             {data?.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="grid grid-cols-1 lg:grid-cols-5 bg-light-gray rounded-xl overflow-hidden max-w-4xl mx-auto">
-                  <div className="h-auto lg:min-h-[500px] lg:col-span-2 overflow-hidden rounded-lg">
+                <div className="grid grid-cols-1 lg:grid-cols-5 lg:min-h-[500px] bg-light-gray rounded-xl overflow-hidden max-w-4xl mx-auto">
+                  <div className="h-[300px] lg:h-auto lg:col-span-2 overflow-hidden rounded-lg">
                     <img
                       loading="lazy"
                       src={item.image_url}
@@ -47,10 +47,10 @@ const StorySlider = ({ loading, data, title }) => {
                     />
                   </div>
 
-                  <div className="p-6 rounded-lg shadow-lg lg:col-span-3">
+                  <div className="p-6 rounded-lg shadow-lg lg:col-span-3 min-h-[300px] lg:h-auto">
                     <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                     <div
-                      className="text-xl lg:text-3xl"
+                      className="htmlContent"
                       dangerouslySetInnerHTML={{ __html: item.paragraph }}
                     />
                   </div>

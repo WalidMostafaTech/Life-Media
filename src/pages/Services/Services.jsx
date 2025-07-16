@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ContactUsSection from "../../components/sections/ContactUsSection/ContactUsSection";
 import Hero from "../../components/sections/Hero/Hero";
 import Partners from "../../components/sections/Partners/Partners";
-import ServicesSection from "./ServicesSection";
+import ServicesSection from "./sections/ServicesSection";
 import { useEffect } from "react";
 import { getBanners } from "../../store/banners/bannersAction";
 import { Helmet } from "react-helmet";

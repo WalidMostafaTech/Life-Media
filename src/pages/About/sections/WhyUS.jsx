@@ -14,7 +14,7 @@ const WhyUS = ({ data, loading }) => {
       <SectionTitle title={t("about.why_us")} />
 
       <div
-        className="text-lg mb-4"
+        className="htmlContent mb-4"
         dangerouslySetInnerHTML={{ __html: data?.why_us_text }}
       />
 

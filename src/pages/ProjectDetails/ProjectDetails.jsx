@@ -43,7 +43,7 @@ const ProjectDetails = () => {
         <ProjectHero project={project} />
 
         <div
-          className="text-xl lg:text-3xl container sectionPadding"
+          className="htmlContent container sectionPadding"
           dangerouslySetInnerHTML={{ __html: project?.long_description }}
         />
 

@@ -38,7 +38,7 @@ const NewPages = () => {
         </h1>
 
         <div
-          className="text-lg"
+          className="htmlContent"
           dangerouslySetInnerHTML={{ __html: page?.content }}
         ></div>
       </article>
