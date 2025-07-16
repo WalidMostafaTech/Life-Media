@@ -31,7 +31,10 @@ const ServicesSection = () => {
 
             <section className="grid lg:grid-cols-2 gap-4">
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="group relative rounded-4xl overflow-hidden sm:col-span-2">
+                <Link
+                  to={`/solutions-we-offer/${solutions[0]?.id}`}
+                  className="group relative rounded-4xl overflow-hidden sm:col-span-2"
+                >
                   <img
                     loading="lazy"
                     src={solutions[0]?.image_url}
@@ -50,8 +53,11 @@ const ServicesSection = () => {
                       {solutions[0]?.short_description}
                     </p>
                   </div>
-                </div>
-                <div className="group relative rounded-4xl overflow-hidden">
+                </Link>
+                <Link
+                  to={`/solutions-we-offer/${solutions[1]?.id}`}
+                  className="group relative rounded-4xl overflow-hidden"
+                >
                   <img
                     loading="lazy"
                     src={solutions[1]?.image_url}
@@ -70,8 +76,11 @@ const ServicesSection = () => {
                       {solutions[1]?.short_description}
                     </p>
                   </div>
-                </div>
-                <div className="group relative rounded-4xl overflow-hidden">
+                </Link>
+                <Link
+                  to={`/solutions-we-offer/${solutions[2]?.id}`}
+                  className="group relative rounded-4xl overflow-hidden"
+                >
                   <img
                     loading="lazy"
                     src={solutions[2]?.image_url}
@@ -90,11 +99,14 @@ const ServicesSection = () => {
                       {solutions[2]?.short_description}
                     </p>
                   </div>
-                </div>
+                </Link>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="group relative rounded-4xl overflow-hidden">
+                <Link
+                  to={`/solutions-we-offer/${solutions[3]?.id}`}
+                  className="group relative rounded-4xl overflow-hidden"
+                >
                   <img
                     loading="lazy"
                     src={solutions[3]?.image_url}
@@ -113,8 +125,11 @@ const ServicesSection = () => {
                       {solutions[3]?.short_description}
                     </p>
                   </div>
-                </div>
-                <div className="group relative rounded-4xl overflow-hidden">
+                </Link>
+                <Link
+                  to={`/solutions-we-offer/${solutions[4]?.id}`}
+                  className="group relative rounded-4xl overflow-hidden"
+                >
                   <img
                     loading="lazy"
                     src={solutions[4]?.image_url}
@@ -133,8 +148,11 @@ const ServicesSection = () => {
                       {solutions[4]?.short_description}
                     </p>
                   </div>
-                </div>
-                <div className="group relative rounded-4xl overflow-hidden sm:col-span-2">
+                </Link>
+                <Link
+                  to={`/solutions-we-offer/${solutions[5]?.id}`}
+                  className="group relative rounded-4xl overflow-hidden sm:col-span-2"
+                >
                   <img
                     loading="lazy"
                     src={solutions[5]?.image_url}
@@ -153,7 +171,7 @@ const ServicesSection = () => {
                       {solutions[5]?.short_description}
                     </p>
                   </div>
-                </div>
+                </Link>
               </div>
             </section>
 

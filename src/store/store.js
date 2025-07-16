@@ -17,6 +17,7 @@ import videosSliderSlice from "./videosSlider/videosSliderSlice";
 import pagesSlice from "./pages/pagesSlice";
 import officesSlice from "./offices/officesSlice";
 import imagesSliderSlice from "./imagesSlider/imagesSliderSlice";
+import newLiveMediaSlice from "./newLiveMedia/newLiveMediaSlice";
 
 export const store = configureStore({
   reducer: {
@@ -38,5 +39,6 @@ export const store = configureStore({
     pages: pagesSlice,
     offices: officesSlice,
     imagesSlider: imagesSliderSlice,
+    newLiveMedia: newLiveMediaSlice,
   },
 });

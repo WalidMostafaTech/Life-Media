@@ -3,24 +3,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "./SuccessStory.css";
-import { getSuccessStories } from "../../../../store/success_stories/success_storiesAction";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import "./StorySlider.css";
 import { useTranslation } from "react-i18next";
 import EmptySection from "../../../../components/layout/EmptySection/EmptySection";
 import LoadingSection from "../../../../components/layout/Loading/LoadingSection";
 
-const SuccessStory = () => {
+const StorySlider = ({ loading, data, title }) => {
   const { t } = useTranslation();
-  const { successStories, loading } = useSelector(
-    (state) => state.successStories
-  );
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getSuccessStories());
-  }, [dispatch]);
 
   const direction = document.body.getAttribute("dir") || "ltr";
 
@@ -30,9 +19,9 @@ const SuccessStory = () => {
 
   return (
     <>
-      {successStories.length > 0 ? (
+      {data.length > 0 ? (
         <section className="container sectionPadding">
-          <SectionTitle title={t("success_story.title")} />
+          <SectionTitle title={t(title)} />
 
           <Swiper
             key={direction}
@@ -44,12 +33,12 @@ const SuccessStory = () => {
             speed={1000}
             loop={true}
             modules={[Navigation, Autoplay]}
-            className="successStorySwiper"
+            className="storySliderSwiper"
           >
-            {successStories?.map((item) => (
+            {data?.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="flex flex-col lg:flex-row bg-light-gray rounded-xl overflow-hidden max-w-4xl mx-auto">
-                  <div className="h-auto overflow-hidden rounded-lg">
+                <div className="grid grid-cols-1 lg:grid-cols-5 bg-light-gray rounded-xl overflow-hidden max-w-4xl mx-auto">
+                  <div className="h-auto lg:min-h-[500px] lg:col-span-2 overflow-hidden rounded-lg">
                     <img
                       loading="lazy"
                       src={item.image_url}
@@ -58,9 +47,12 @@ const SuccessStory = () => {
                     />
                   </div>
 
-                  <div className="p-6 rounded-lg shadow-lg">
+                  <div className="p-6 rounded-lg shadow-lg lg:col-span-3">
                     <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                    <p className="mb-4">{item.paragraph}</p>
+                    <div
+                      className="text-xl lg:text-3xl"
+                      dangerouslySetInnerHTML={{ __html: item.paragraph }}
+                    />
                   </div>
                 </div>
               </SwiperSlide>
@@ -74,4 +66,4 @@ const SuccessStory = () => {
   );
 };
 
-export default SuccessStory;
+export default StorySlider;

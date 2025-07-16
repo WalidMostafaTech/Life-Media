@@ -22,3 +22,23 @@ export const getSolutions = createAsyncThunk(
     }
   }
 );
+
+export const getSolutionsDetails = createAsyncThunk(
+  "solutions/getSolutionsDetails",
+  async (id, { rejectWithValue, getState }) => {
+    try {
+      const state = getState();
+      const language = state.language.lang || "en";
+
+      const { data } = await axios.get(`/solutionDetails?solution_id=${id}`, {
+        headers: {
+          lang: language,
+        },
+      });
+
+      return data.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

@@ -2,7 +2,6 @@ import CompanyState from "../../components/sections/CompanyState/CompanyState";
 import Partners from "../../components/sections/Partners/Partners";
 import ServicesSection from "./sections/ServicesSection/ServicesSection";
 import Testimonials from "../../components/sections/Testimonials/Testimonials";
-import SuccessStory from "./sections/SuccessStory/SuccessStory";
 import FAQ from "../../components/sections/FAQ/FAQ";
 import ContactUsSection from "../../components/sections/ContactUsSection/ContactUsSection";
 import Hero from "../../components/sections/Hero/Hero";
@@ -16,9 +15,20 @@ import { getBanners } from "../../store/banners/bannersAction";
 import { useTranslation } from "react-i18next";
 import { getVideosSlider } from "../../store/videosSlider/videosSliderAction";
 import { getImagesSlider } from "../../store/imagesSlider/imagesSliderAction";
+import { getNewLiveMedia } from "../../store/newLiveMedia/newLiveMediaAction";
+import { getSuccessStories } from "../../store/success_stories/success_storiesAction";
+import StorySlider from "./sections/StorySlider/StorySlider";
 
 const Home = () => {
   const { banners, loading } = useSelector((state) => state.banners);
+  const { successStories, loading: successStoriesLoading } = useSelector(
+    (state) => state.successStories
+  );
+
+  const { newLiveMedia, loading: newLiveMediaLoading } = useSelector(
+    (state) => state.newLiveMedia
+  );
+
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -34,6 +44,8 @@ const Home = () => {
     dispatch(getBanners("home"));
     dispatch(getVideosSlider());
     dispatch(getImagesSlider());
+    dispatch(getNewLiveMedia());
+    dispatch(getSuccessStories());
   }, [dispatch]);
 
   return (
@@ -70,8 +82,17 @@ const Home = () => {
         />
         <ServicesSection />
         <Testimonials />
-        <SuccessStory />
+        <StorySlider
+          loading={successStoriesLoading}
+          data={successStories}
+          title="success_story.title"
+        />
         <FAQ />
+        <StorySlider
+          loading={newLiveMediaLoading}
+          data={newLiveMedia}
+          title="new_live_media.title"
+        />
         <ContactUsSection />
       </section>
     </>
