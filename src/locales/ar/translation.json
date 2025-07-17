@@ -38,10 +38,12 @@
     "title": "آراء العملاء"
   },
   "videos_slider": {
-    "title": "أحدث الفيديوهات"
+    "title": "أحدث الفيديوهات",
+    "play": "مشاهدة الفيديو"
   },
   "images_slider": {
-    "title": "احدث التصميمات"
+    "title": "احدث التصميمات",
+    "play": "مشاهدة الصورة"
   },
   "success_story": {
     "title": "قصة نجاح"
@@ -127,6 +129,10 @@
     "services_title": "خدماتنا | Life Media",
     "services_description": "اكتشف مجموعة الخدمات التي تقدمها Life Media في مجالات التصميم والتسويق الرقمي وتطوير المواقع.",
     "project_title_fallback": "تفاصيل المشروع | Life Media",
-    "project_description_fallback": "اطلع على تفاصيل هذا المشروع المميز من تنفيذ فريق Life Media."
+    "project_description_fallback": "اطلع على تفاصيل هذا المشروع المميز من تنفيذ فريق Life Media.",
+    "videos_title": "احدث الفيديوهات | Life Media",
+    "videos_description": "استعرض أحدث الفيديوهات التي قدمتها Life Media لعملائها.",
+    "images_title": "احدث التصميمات | Life Media",
+    "images_description": "استعرض أحدث الصور والعروض البصرية المقدمة من Life Media."
   }
 }

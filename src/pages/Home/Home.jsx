@@ -21,6 +21,7 @@ import StorySlider from "./sections/StorySlider/StorySlider";
 
 const Home = () => {
   const { banners, loading } = useSelector((state) => state.banners);
+
   const { successStories, loading: successStoriesLoading } = useSelector(
     (state) => state.successStories
   );
@@ -69,6 +70,7 @@ const Home = () => {
           loading={newLiveMediaLoading}
           data={newLiveMedia}
           title="new_live_media.title"
+          type="new_live_media"
         />
         <CompanyState />
         <VideoSection />
@@ -91,6 +93,7 @@ const Home = () => {
           loading={successStoriesLoading}
           data={successStories}
           title="success_story.title"
+          type="success_story"
         />
         <FAQ />
 

@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getSuccessStories } from "./success_storiesAction";
+import {
+  getSuccessStories,
+  getSuccessStoryDetails,
+} from "./success_storiesAction";
 
 const initialState = {
   successStories: [],
+  successStoriesDetails: {},
   loading: false,
   error: null,
 };
@@ -13,6 +17,7 @@ const successStoriesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // getSuccessStories
       .addCase(getSuccessStories.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -22,6 +27,19 @@ const successStoriesSlice = createSlice({
         state.successStories = action.payload;
       })
       .addCase(getSuccessStories.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      // getSuccessStoriesDetails
+      .addCase(getSuccessStoryDetails.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getSuccessStoryDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.successStoriesDetails = action.payload;
+      })
+      .addCase(getSuccessStoryDetails.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

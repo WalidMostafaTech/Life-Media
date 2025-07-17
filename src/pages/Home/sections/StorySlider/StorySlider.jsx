@@ -7,8 +7,9 @@ import "./StorySlider.css";
 import { useTranslation } from "react-i18next";
 import EmptySection from "../../../../components/layout/EmptySection/EmptySection";
 import LoadingSection from "../../../../components/layout/Loading/LoadingSection";
+import { Link } from "react-router-dom";
 
-const StorySlider = ({ loading, data, title }) => {
+const StorySlider = ({ loading, data, title, type }) => {
   const { t } = useTranslation();
 
   const direction = document.body.getAttribute("dir") || "ltr";
@@ -37,7 +38,10 @@ const StorySlider = ({ loading, data, title }) => {
           >
             {data?.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="grid grid-cols-1 lg:grid-cols-5 lg:min-h-[500px] bg-light-gray rounded-xl overflow-hidden max-w-4xl mx-auto">
+                <Link
+                  to={`/stories/${type}/${item.id}`}
+                  className="grid grid-cols-1 lg:grid-cols-5 lg:min-h-[300px] bg-light-gray rounded-xl overflow-hidden max-w-4xl mx-auto"
+                >
                   <div className="h-[300px] lg:h-auto lg:col-span-2 overflow-hidden rounded-lg">
                     <img
                       loading="lazy"
@@ -47,14 +51,14 @@ const StorySlider = ({ loading, data, title }) => {
                     />
                   </div>
 
-                  <div className="p-6 rounded-lg shadow-lg lg:col-span-3 min-h-[300px] lg:h-auto">
+                  <div className="p-6 rounded-lg shadow-lg lg:col-span-3 min-h-[300px]">
                     <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                     <div
-                      className="htmlContent"
+                      className="htmlContent line-clamp-6"
                       dangerouslySetInnerHTML={{ __html: item.paragraph }}
                     />
                   </div>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>

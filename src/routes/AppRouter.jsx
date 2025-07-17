@@ -15,6 +15,10 @@ const NewPages = React.lazy(() => import("../pages/NewPages/NewPages"));
 const SolutionsWeOffer = React.lazy(() =>
   import("../pages/SolutionsWeOffer/SolutionsWeOffer")
 );
+const StoryDetails = React.lazy(() =>
+  import("../pages/StoryDetails/StoryDetails")
+);
+const MediaStore = React.lazy(() => import("../pages/MediaStore/MediaStore"));
 
 const router = createBrowserRouter([
   {
@@ -32,6 +36,8 @@ const router = createBrowserRouter([
         element: <SolutionsWeOffer />,
       },
       { path: "pages/:slug", element: <NewPages /> },
+      { path: "stories/:type/:id", element: <StoryDetails /> },
+      { path: "media/:type", element: <MediaStore /> },
     ],
   },
 ]);

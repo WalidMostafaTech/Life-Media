@@ -20,3 +20,23 @@ export const getNewLiveMedia = createAsyncThunk(
     }
   }
 );
+
+export const getNewLiveMediaDetails = createAsyncThunk(
+  "newLiveMedia/getNewLiveMediaDetails",
+  async (id, { rejectWithValue, getState }) => {
+    try {
+      const state = getState();
+      const language = state.language.lang || "en";
+
+      const { data } = await axios.get(`/mediaDetails?media_id=${id}`, {
+        headers: {
+          lang: language,
+        },
+      });
+
+      return data.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

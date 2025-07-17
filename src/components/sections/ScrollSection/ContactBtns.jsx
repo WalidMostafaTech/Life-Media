@@ -23,7 +23,7 @@ const ContactBtns = ({ isVisible }) => {
         href={`tel:${setting.phone}`}
         title={setting.phone}
         target="_blank"
-        className="text-white text-3xl bg-dark-red p-2 rounded-xl cursor-pointer"
+        className="text-white text-3xl bg-gradient-to-t from-dark-red to-light-gray p-2 rounded-xl cursor-pointer"
       >
         <FaPhoneAlt />
       </a>
@@ -31,7 +31,7 @@ const ContactBtns = ({ isVisible }) => {
         href={`https://wa.me/${setting.whatsapp}`}
         title={setting.whatsapp}
         target="_blank"
-        className="text-white text-3xl bg-dark-red p-2 rounded-xl cursor-pointer"
+        className="text-white text-3xl bg-gradient-to-t from-dark-red to-light-gray p-2 rounded-xl cursor-pointer"
       >
         <FaWhatsapp />
       </a>

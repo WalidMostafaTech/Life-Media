@@ -3,6 +3,8 @@ import SectionTitle from "../../../../components/common/SectionTitle";
 import { useTranslation } from "react-i18next";
 import LoadingSection from "../../../../components/layout/Loading/LoadingSection";
 import EmptySection from "../../../../components/layout/EmptySection/EmptySection";
+import { Link } from "react-router-dom";
+import { GoArrowUpRight } from "react-icons/go";
 
 const MediaMarquee = ({
   media = [],
@@ -18,13 +20,13 @@ const MediaMarquee = ({
 
   return (
     <article
-      className="pb-20 lg:pb-50 pt-10 lg:pt-20 bg-light-gray overflow-hidden"
+      className="py-10 lg:py-20 bg-light-gray overflow-hidden"
       style={{ perspective: "1000px" }}
     >
       {title && <SectionTitle title={t(title)} />}
 
       <section
-        className="overflow-hidden pt-8 lg:pt-20"
+        className="overflow-hidden py-8 lg:py-20"
         style={{
           transformStyle: "preserve-3d",
           transformOrigin: direction === "ltr" ? "right" : "left",
@@ -67,6 +69,13 @@ const MediaMarquee = ({
           ))}
         </Marquee>
       </section>
+
+      <Link
+        to={`/media/${type === "video" ? "videos" : "designs"}`}
+        className="flex items-center gap-1 w-max mx-auto mt-6 font-semibold text-light-red hover:underline relative z-10"
+      >
+        {t("services.learn_more")} <GoArrowUpRight className="text-3xl" />
+      </Link>
     </article>
   );
 };

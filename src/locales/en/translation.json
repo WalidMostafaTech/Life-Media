@@ -38,10 +38,12 @@
     "title": "Client Testimonials"
   },
   "videos_slider": {
-    "title": "Latest Videos"
+    "title": "Latest Videos",
+    "play": "Watch Video"
   },
   "images_slider": {
-    "title": "Latest designs"
+    "title": "Latest designs",
+    "play": "See Design"
   },
   "success_story": {
     "title": "Success Story"
@@ -127,6 +129,10 @@
     "services_title": "Our Services | Life Media",
     "services_description": "Discover the range of services Life Media offers in design, digital marketing, and web development.",
     "project_title_fallback": "Project Details | Life Media",
-    "project_description_fallback": "Explore the details of this featured project by the Life Media team."
+    "project_description_fallback": "Explore the details of this featured project by the Life Media team.",
+    "videos_title": "Media Videos | Life Media",
+    "videos_description": "Browse the latest videos created by Life Media for our clients.",
+    "images_title": "Media Images | Life Media",
+    "images_description": "Explore the latest visuals and promotional images by Life Media."
   }
 }

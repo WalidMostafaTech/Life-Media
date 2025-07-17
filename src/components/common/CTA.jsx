@@ -1,7 +1,13 @@
 import { GoArrowUpRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 
-const CTA = ({ text1, text2, btnText }) => {
+const CTA = ({
+  text1,
+  text2,
+  btnText,
+  link = "/contact-us",
+  newTab = false,
+}) => {
   return (
     <div className="container sectionPadding flex flex-wrap gap-4 justify-between items-center">
       <div>
@@ -9,9 +15,15 @@ const CTA = ({ text1, text2, btnText }) => {
         {text2 && <h2 className="text-2xl lg:text-3xl">{text2}</h2>}
       </div>
 
-      <Link to="/contact-us" className="mainBtn">
-        {btnText} <GoArrowUpRight />
-      </Link>
+      {!newTab ? (
+        <Link to={link} className="mainBtn">
+          {btnText} <GoArrowUpRight />
+        </Link>
+      ) : (
+        <a href={link} target="_blank" className="mainBtn">
+          {btnText} <GoArrowUpRight />
+        </a>
+      )}
     </div>
   );
 };

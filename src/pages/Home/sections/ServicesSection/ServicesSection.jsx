@@ -13,6 +13,8 @@ import ServicesCard from "./ServicesCard";
 const ServicesSection = () => {
   const { t } = useTranslation();
   const { solutions, loading } = useSelector((state) => state.solutions);
+  const { setting } = useSelector((state) => state.setting);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -56,6 +58,8 @@ const ServicesSection = () => {
             text1={t("cta.not_sure")}
             text2={t("cta.build_together")}
             btnText={t("cta.book_call")}
+            link={`https://wa.me/${setting?.whatsapp}`}
+            newTab
           />
         </>
       ) : (
