@@ -26,7 +26,7 @@ const CompanyState = () => {
           <SectionTitle title={t("company_state_title")} />
 
           <section className="flex flex-wrap gap-4 justify-center">
-            {[...setting.provenResults, ...setting.provenResults].map(
+            {setting?.provenResults.map(
               (item, index) => (
                 <div
                   key={index}
