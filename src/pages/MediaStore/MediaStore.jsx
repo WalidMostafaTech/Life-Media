@@ -115,6 +115,10 @@ const MediaStore = () => {
                     src={item.full_path}
                     alt={item.title}
                     className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
                   />
                 ) : (
                   <img

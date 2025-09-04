@@ -59,7 +59,9 @@ const Header = () => {
             }`}
         >
           <div className="flex items-center justify-between gap-2 w-full lg:w-auto">
-            <img loading="lazy" src={logoImg} alt="Logo" />
+            <Link to="/" onClick={() => setActiveNav(false)}>
+              <img loading="lazy" src={logoImg} alt="Logo" />
+            </Link>
             <span className="text-3xl cursor-pointer lg:hidden">
               {activeNav ? (
                 <IoClose onClick={() => setActiveNav(false)} />

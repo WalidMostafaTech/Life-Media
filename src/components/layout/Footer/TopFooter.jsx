@@ -9,7 +9,14 @@ const TopFooter = ({ pages, offices, linksList, setting, t }) => {
       } gap-8`}
     >
       <div className="flex flex-col items-center gap-4 text-center">
-        <img loading="lazy" src={logoImg} alt="Logo" className="w-42 lg:w-60" />
+        <Link to="/">
+          <img
+            loading="lazy"
+            src={logoImg}
+            alt="Logo"
+            className="w-42 lg:w-60"
+          />
+        </Link>
         <p>{t("footer.title")}</p>
 
         {offices?.length > 0 && (
