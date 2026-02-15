@@ -1,24 +1,22 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPageDetails } from "../../store/pages/pagesAction";
 import { Helmet } from "react-helmet";
-import LoadingPage from "../../components/layout/Loading/LoadingPage";
+import LoadingPage from "../../components/Loading/LoadingPage";
+import { getPagesDetails } from "../../api/pagesServices";
+import { useQuery } from "@tanstack/react-query";
 
 const NewPages = () => {
   const { slug } = useParams();
-  const { page, loading } = useSelector((state) => state.pages);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getPageDetails(slug));
-  }, [dispatch, slug]);
+  const { data: page, isLoading } = useQuery({
+    queryKey: ["pageDetails" + slug],
+    queryFn: () => getPagesDetails(slug),
+  });
 
   const metaTitle = page?.page_title;
   const metaDescription = page?.page_meta_description;
   const metaImage = page?.page_meta_preview_image;
 
-  if (loading) return <LoadingPage />;
+  if (isLoading) return <LoadingPage />;
 
   return (
     <>

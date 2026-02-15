@@ -3,29 +3,43 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
-import { useSelector } from "react-redux";
-import "./i18n.js";
-import ScrollSection from "./components/sections/ScrollSection/ScrollSection.jsx";
+import ScrollToTopBtn from "./components/behaviors/ScrollToTopBtn.jsx";
+import FixedSection from "./components/behaviors/FixedSection.jsx";
+import { useDispatch } from "react-redux";
+import {
+  fetchGovernorates,
+  fetchOffices,
+  fetchPages,
+  fetchSetting,
+} from "./store/setting/settingAction.js";
 
 function App() {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const lang = useSelector((state) => state.language.lang);
-
   useEffect(() => {
-    document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
-  }, [lang]);
+    dispatch(fetchSetting());
+    dispatch(fetchGovernorates());
+    dispatch(fetchOffices());
+    dispatch(fetchPages());
+  }, [dispatch]);
 
   return (
     <main>
       <Header />
-      <Outlet />
+
+      <div className="min-h-dvh">
+        <Outlet />
+      </div>
+
       <Footer />
 
-      <ScrollSection />
+      <ScrollToTopBtn />
+      <FixedSection />
     </main>
   );
 }

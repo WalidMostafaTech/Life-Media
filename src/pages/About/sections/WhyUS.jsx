@@ -1,13 +1,8 @@
 import { useTranslation } from "react-i18next";
 import SectionTitle from "../../../components/common/SectionTitle";
-import LoadingSection from "../../../components/layout/Loading/LoadingSection";
 
-const WhyUS = ({ data, loading }) => {
+const WhyUS = ({ data }) => {
   const { t } = useTranslation();
-
-  if (loading) {
-    return <LoadingSection />;
-  }
 
   return (
     <article className="container sectionPadding">

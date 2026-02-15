@@ -1,10 +1,4 @@
-import LoadingSection from "../../../components/layout/Loading/LoadingSection";
-
-const AboutUs = ({ data, loading }) => {
-  if (loading) {
-    return <LoadingSection />;
-  }
-
+const AboutUs = ({ data }) => {
   return (
     <article className="container sectionPadding flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-8">
       <img

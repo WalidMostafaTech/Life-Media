@@ -1,31 +1,28 @@
-import { useDispatch, useSelector } from "react-redux";
-import CompanyState from "../../components/sections/CompanyState/CompanyState";
-import ContactUsSection from "../../components/sections/ContactUsSection/ContactUsSection";
-import FAQ from "../../components/sections/FAQ/FAQ";
-import Hero from "../../components/sections/Hero/Hero";
-import Partners from "../../components/sections/Partners/Partners";
-import Testimonials from "../../components/sections/Testimonials/Testimonials";
+import CompanyState from "../../components/sections/CompanyState";
+import ContactUsSection from "../../components/sections/ContactUsSection";
+import FAQ from "../../components/sections/FAQ";
+import HeroSection from "../../components/sections/HeroSection";
+import Partners from "../../components/sections/Partners";
+import Testimonials from "../../components/sections/Testimonials";
 import AboutUs from "./sections/AboutUs";
 import HowWeWork from "./sections/HowWeWork";
 import OurValue from "./sections/OurValue";
 import WhyUS from "./sections/WhyUS";
-import { useEffect } from "react";
-import { getBanners } from "../../store/banners/bannersAction";
-import { getAbout } from "../../store/about/aboutAction";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { getAboutUsPage } from "../../api/pagesServices";
+import SkeletonAboutPage from "../../components/Loading/SkeletonLoading/SkeletonAboutPage";
 
 const About = () => {
-  const { banners, loading } = useSelector((state) => state.banners);
-  const { about, loading: aboutLoading } = useSelector((state) => state.about);
-  const dispatch = useDispatch();
-
   const { t } = useTranslation();
 
-  useEffect(() => {
-    dispatch(getBanners("about"));
-    dispatch(getAbout());
-  }, [dispatch]);
+  const { data: about = [], isLoading } = useQuery({
+    queryKey: ["about_us_page"],
+    queryFn: getAboutUsPage,
+  });
+
+  if (isLoading) return <SkeletonAboutPage />;
 
   return (
     <>
@@ -43,13 +40,13 @@ const About = () => {
       </Helmet>
 
       <section>
-        <Hero banners={banners} loading={loading} />
-        <AboutUs data={about} loading={aboutLoading} />
+        <HeroSection page="about" />
+        <AboutUs data={about} />
         <CompanyState />
-        <OurValue data={about?.our_values} loading={aboutLoading} />
+        <OurValue data={about?.our_values} />
         <Partners />
-        <HowWeWork data={about?.how_we_work} loading={aboutLoading} />
-        <WhyUS data={about} loading={aboutLoading} />
+        <HowWeWork data={about?.how_we_work} />
+        <WhyUS data={about} />
         <Testimonials />
         <FAQ />
         <ContactUsSection />

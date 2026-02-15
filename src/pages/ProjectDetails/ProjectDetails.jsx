@@ -1,26 +1,24 @@
 import { useTranslation } from "react-i18next";
 import CTA from "../../components/common/CTA";
 import ProjectHero from "./sections/ProjectHero";
-import Partners from "../../components/sections/Partners/Partners";
+import Partners from "../../components/sections/Partners";
 import ProjectImages from "./sections/ProjectImages";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getProjectDetails } from "../../store/projects/projectsAction";
 import { useParams } from "react-router-dom";
-import LoadingSection from "../../components/layout/Loading/LoadingSection";
 import { Helmet } from "react-helmet";
+import { useQuery } from "@tanstack/react-query";
+import { getProjectDetails } from "../../api/projectsServices";
+import SkeletonProjectDetails from "../../components/Loading/SkeletonLoading/SkeletonProjectDetails";
 
 const ProjectDetails = () => {
   const { t } = useTranslation();
   const { id } = useParams();
-  const { project, loading } = useSelector((state) => state.projects);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getProjectDetails(id));
-  }, [dispatch, id]);
+  const { data: project = [], isLoading } = useQuery({
+    queryKey: ["projectDetails", id],
+    queryFn: () => getProjectDetails(id),
+  });
 
-  if (loading) return <LoadingSection />;
+  if (isLoading) return <SkeletonProjectDetails />;
 
   const metaTitle = project?.title || t("helmet.project_title_fallback");
   const metaDescription =
@@ -43,7 +41,7 @@ const ProjectDetails = () => {
         <ProjectHero project={project} />
 
         <div
-          className="htmlContent container sectionPadding"
+          className="htmlContent container lg:max-w-3xl sectionPadding"
           dangerouslySetInnerHTML={{ __html: project?.long_description }}
         />
 
@@ -54,6 +52,7 @@ const ProjectDetails = () => {
           text2={t("cta.next_success")}
           btnText={t("cta.start_project")}
         />
+
         <Partners />
       </article>
     </>

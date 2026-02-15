@@ -1,0 +1,21 @@
+.sliderSectionSwiper {
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--dark-red);
+
+    &:after {
+      font-size: 20px;
+      color: white;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none;
+    }
+  }
+}

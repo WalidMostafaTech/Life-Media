@@ -1,13 +1,8 @@
 import { useTranslation } from "react-i18next";
 import SectionTitle from "../../../components/common/SectionTitle";
-import LoadingSection from "../../../components/layout/Loading/LoadingSection";
 
-const HowWeWork = ({ data, loading }) => {
+const HowWeWork = ({ data }) => {
   const { t } = useTranslation();
-
-  if (loading) {
-    return <LoadingSection />;
-  }
 
   return (
     <article className="container sectionPadding">
@@ -16,7 +11,7 @@ const HowWeWork = ({ data, loading }) => {
         subTitle={t("about.how_we_work_sub_title")}
       />
 
-      <section className="space-y-4">
+      <section className="space-y-4 max-w-6xl mx-auto">
         {data?.map((item, index) => (
           <div key={index} className="flex justify-start even:justify-end">
             <div className="bg-light-gray rounded-xl flex items-center gap-4 p-4 lg:p-8 w-full lg:w-3/4">

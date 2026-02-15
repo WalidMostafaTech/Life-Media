@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const ServicesCard = ({ solution, size = "small" }) => {
   return (
     <Link
-      to={`/solutions-we-offer/${solution?.id}`}
+      to={`/solution/${solution?.id}`}
       className={`group relative rounded-4xl overflow-hidden ${
         size === "large" ? "sm:col-span-2 lg:h-[500px]" : "lg:h-[550px]"
       }`}

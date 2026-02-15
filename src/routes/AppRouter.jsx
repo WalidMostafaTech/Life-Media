@@ -1,29 +1,43 @@
 import React, { Suspense } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import LoadingPage from "../components/layout/Loading/LoadingPage";
+import LoadingPage from "../components/Loading/LoadingPage";
+import NotFound from "../pages/NotFound/NotFound";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const Home = React.lazy(() => import("../pages/Home/Home"));
 const About = React.lazy(() => import("../pages/About/About"));
 const ContactUs = React.lazy(() => import("../pages/ContactUs/ContactUs"));
 const Projects = React.lazy(() => import("../pages/Projects/Projects"));
-const ProjectDetails = React.lazy(() =>
-  import("../pages/ProjectDetails/ProjectDetails")
+const ProjectDetails = React.lazy(
+  () => import("../pages/ProjectDetails/ProjectDetails"),
 );
 const Services = React.lazy(() => import("../pages/Services/Services"));
 const NewPages = React.lazy(() => import("../pages/NewPages/NewPages"));
-const SolutionsWeOffer = React.lazy(() =>
-  import("../pages/SolutionsWeOffer/SolutionsWeOffer")
+const SolutionsWeOffer = React.lazy(
+  () => import("../pages/SolutionsWeOffer/SolutionsWeOffer"),
 );
-const StoryDetails = React.lazy(() =>
-  import("../pages/StoryDetails/StoryDetails")
+
+const NewLiveMediaPage = React.lazy(
+  () => import("../pages/NewLiveMediaPage/NewLiveMediaPage"),
 );
-const MediaStore = React.lazy(() => import("../pages/MediaStore/MediaStore"));
+const SuccessStoryPage = React.lazy(
+  () => import("../pages/SuccessStoryPage/SuccessStoryPage"),
+);
+
+const LatestVideosPage = React.lazy(
+  () => import("../pages/LatestVideosPage/LatestVideosPage"),
+);
+const LatestDesignsPage = React.lazy(
+  () => import("../pages/LatestDesignsPage/LatestDesignsPage"),
+);
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
+
     children: [
       { index: true, element: <Home /> },
       { path: "about", element: <About /> },
@@ -32,12 +46,21 @@ const router = createBrowserRouter([
       { path: "projects/:id", element: <ProjectDetails /> },
       { path: "services", element: <Services /> },
       {
-        path: "solutions-we-offer/:solution_id",
+        path: "solution/:id",
         element: <SolutionsWeOffer />,
       },
       { path: "pages/:slug", element: <NewPages /> },
-      { path: "stories/:type/:id", element: <StoryDetails /> },
-      { path: "media/:type", element: <MediaStore /> },
+
+      { path: "new-live-media/:id", element: <NewLiveMediaPage /> },
+      { path: "success-story/:id", element: <SuccessStoryPage /> },
+
+      { path: "latest-videos", element: <LatestVideosPage /> },
+      { path: "latest-designs", element: <LatestDesignsPage /> },
+
+      {
+        path: "*",
+        element: <NotFound />,
+      },
     ],
   },
 ]);

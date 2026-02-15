@@ -1,22 +1,77 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import {
+  getSettings,
+  getGovernorates,
+  getOffices,
+} from "../../api/mainServices";
+import { getPages, getPagesDetails } from "../../api/pagesServices";
 
-export const getSetting = createAsyncThunk(
-  "setting/getSetting",
-  async (_, { rejectWithValue, getState }) => {
+export const fetchSetting = createAsyncThunk(
+  "setting/fetchSetting",
+  async (_, { rejectWithValue }) => {
     try {
-      const state = getState();
-      const language = state.language.lang || "en";
-
-      const { data } = await axios.get("/app_setting", {
-        headers: {
-          lang: language,
-        },
-      });
-
-      return data.data;
+      const data = await getSettings();
+      return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(
+        error.response?.data.error_msg || "Failed to load config",
+      );
     }
-  }
+  },
+);
+
+export const fetchGovernorates = createAsyncThunk(
+  "setting/fetchGovernorates",
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await getGovernorates();
+      return data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data.error_msg || "Failed to load config",
+      );
+    }
+  },
+);
+
+export const fetchOffices = createAsyncThunk(
+  "setting/fetchOffices",
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await getOffices();
+      return data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data.error_msg || "Failed to load config",
+      );
+    }
+  },
+);
+
+export const fetchPages = createAsyncThunk(
+  "setting/fetchPages",
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await getPages();
+      return data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data.error_msg || "Failed to load config",
+      );
+    }
+  },
+);
+
+export const fetchPagesDetails = createAsyncThunk(
+  "setting/fetchPagesDetails",
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await getPagesDetails();
+      return data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data.error_msg || "Failed to load config",
+      );
+    }
+  },
 );

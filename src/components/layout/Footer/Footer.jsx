@@ -1,26 +1,15 @@
-import LoadingSection from "../Loading/LoadingSection";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getSetting } from "../../../store/setting/settingAction";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import footerImg from "../../../assets/images/Footer.jpg";
-import { getPages } from "../../../store/pages/pagesAction";
-import { getOffices } from "../../../store/offices/officesAction";
 import TopFooter from "./TopFooter";
 import BottomFooter from "./BottomFooter";
+import SkeletonFooter from "../../Loading/SkeletonLoading/SkeletonFooter";
 
 const Footer = () => {
   const { t } = useTranslation();
-  const { setting, loading } = useSelector((state) => state.setting);
-  const { pages } = useSelector((state) => state.pages);
-  const { offices } = useSelector((state) => state.offices);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getSetting());
-    dispatch(getPages());
-    dispatch(getOffices());
-  }, [dispatch]);
+  const { setting, offices, pages, loading } = useSelector(
+    (state) => state.setting,
+  );
 
   const linksList = [
     { name: "header.home", path: "/" },
@@ -29,9 +18,7 @@ const Footer = () => {
     { name: "header.about", path: "/about" },
   ];
 
-  if (loading) {
-    return <LoadingSection />;
-  }
+  if (loading) return <SkeletonFooter />;
 
   return (
     <footer

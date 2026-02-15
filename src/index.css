@@ -25,7 +25,7 @@ html {
   scroll-padding-top: 60px;
 }
 
-.htmlContent {
+/* .htmlContent {
   overflow-wrap: break-word;
   overflow-x: auto;
 
@@ -57,7 +57,7 @@ html {
       margin-inline-start: 1rem;
     }
   }
-}
+} */
 
 @utility container {
   margin-inline: auto;
@@ -68,21 +68,17 @@ html {
 @custom-variant hover (&:hover);
 
 @layer {
-  .myContainer {
-    @apply container px-4 mx-auto;
-  }
-
   .sectionPadding {
     @apply py-6 lg:py-10;
   }
 
   .mainBtn {
-    @apply bg-dark-red font-bold text-lg capitalize py-2 px-4 rounded-full cursor-pointer
+    @apply bg-dark-red font-bold capitalize py-2 px-4 rounded-full cursor-pointer
     flex items-center justify-center gap-2 shadow-[0px_0px_70px_0px] shadow-transparent ring-black/20
     transition-all duration-300;
 
     svg {
-      @apply text-3xl;
+      @apply text-2xl;
     }
 
     &.light {
@@ -108,17 +104,24 @@ html {
   }
 
   .navLink {
-    @apply text-lg duration-300 relative;
+    @apply duration-300 relative;
 
     &::after {
-      @apply content-[''] absolute h-2 w-2 rounded-full bg-light-red -bottom-2 left-1/2 -translate-x-1/2 opacity-0 duration-300;
+      @apply content-[''] absolute h-2 w-2 rounded-full bg-light-red
+      -left-4 top-1/2 -translate-y-1/2 lg:left-1/2 lg:top-full lg:-translate-y-0 lg:-translate-x-1/2 opacity-0 duration-300;
+    }
+
+    &::before {
+      @apply content-[''] absolute h-2 w-2 rounded-full bg-light-red
+      -right-4 top-1/2 -translate-y-1/2 lg:right-1/2 lg:top-full lg:-translate-y-0 lg:translate-x-1/2 opacity-0 duration-300;
     }
 
     &.active,
     &:hover {
       @apply text-light-red;
 
-      &::after {
+      &::after,
+      &::before {
         @apply opacity-100;
       }
     }

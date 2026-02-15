@@ -1,22 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
-import ContactUsSection from "../../components/sections/ContactUsSection/ContactUsSection";
-import Hero from "../../components/sections/Hero/Hero";
-import Partners from "../../components/sections/Partners/Partners";
+import ContactUsSection from "../../components/sections/ContactUsSection";
+import Partners from "../../components/sections/Partners";
 import ServicesSection from "./sections/ServicesSection";
-import { useEffect } from "react";
-import { getBanners } from "../../store/banners/bannersAction";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
+import HeroSection from "../../components/sections/HeroSection";
 
 const Services = () => {
-  const { banners, loading } = useSelector((state) => state.banners);
-  const dispatch = useDispatch();
-
   const { t } = useTranslation();
-
-  useEffect(() => {
-    dispatch(getBanners("services"));
-  }, [dispatch]);
 
   return (
     <>
@@ -34,7 +24,7 @@ const Services = () => {
       </Helmet>
 
       <div>
-        <Hero banners={banners} loading={loading} />
+        <HeroSection page="services" />
         <ServicesSection />
         <ContactUsSection />
         <Partners />

@@ -17,6 +17,7 @@ const MediaModal = ({ openModal, setOpenModal, media, type }) => {
       playVideo();
     }
   }, [openModal, type]);
+
   return (
     <ModalContainer openModal={openModal} setOpenModal={setOpenModal}>
       <div className="w-full h-full flex items-center">

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const CTA = ({
   text1,
   text2,
+  subText,
   btnText,
   link = "/contact-us",
   newTab = false,
@@ -11,19 +12,21 @@ const CTA = ({
   return (
     <div className="container sectionPadding flex flex-wrap gap-4 justify-between items-center">
       <div>
-        <h2 className="text-2xl lg:text-3xl">{text1}</h2>
+        {text1 && <h2 className="text-2xl lg:text-3xl">{text1}</h2>}
         {text2 && <h2 className="text-2xl lg:text-3xl">{text2}</h2>}
+        {subText && <p className="text-sm lg:text-base">{subText}</p>}
       </div>
 
-      {!newTab ? (
-        <Link to={link} className="mainBtn">
-          {btnText} <GoArrowUpRight />
-        </Link>
-      ) : (
-        <a href={link} target="_blank" className="mainBtn">
-          {btnText} <GoArrowUpRight />
-        </a>
-      )}
+      {btnText &&
+        (!newTab ? (
+          <Link to={link} className="mainBtn">
+            {btnText} <GoArrowUpRight />
+          </Link>
+        ) : (
+          <a href={link} target="_blank" className="mainBtn">
+            {btnText} <GoArrowUpRight />
+          </a>
+        ))}
     </div>
   );
 };
